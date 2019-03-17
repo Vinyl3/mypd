@@ -1,0 +1,71 @@
+<div  class="clearFixed"></div>
+  <div class="administratorSection">
+    <div class="clearFixed"></div>
+    <div class="formSection">
+      <div class="contentWrapper">
+          <div class="formHeading">Registration</div>
+          <form [formGroup]="userForm" (ngSubmit)="verifyOtp()" class="formWrapper regWrpp">
+          <a routerLink="/home"><img src="assets/Images/innerLogo.png" alt="" class="innerLogoDiv wow Ownpulse" data-wow-delay = "1.2s" data-wow-duration = "1.3s" style="visibility: visible; animation-duration: 2s; animation-name: Ownpulse;" />
+          </a>
+          <div class="clearFixed"></div>
+          <div class="tabSection">
+            <span class="companyTabCommon companyTab">
+              <a routerLink="/companyRegisteration1">
+                <span>Company<span class="activeLine"></span></span>
+              </a>
+            </span>
+            <span class="companyTabCommon adminTab companyTabactive">
+              <span>Administrator<span class="activeLine"></span></span>
+            </span>
+            <!-- <a routerLink="/creditCardDetailCompany" class="companyTabCommon rightBorderNone creditCardTab">
+              <span>Credit Card</span>
+            </a> -->
+          </div>
+          <div class="clearFixed"></div>
+          <div class="formMainDiv">
+            <div class="breadcrumbSec">
+              <div class="starIconDiv"></div>
+              <div class="breadIconLine"></div>
+              <div class="breadcrumbActive"> </div>
+            </div>
+            <mat-form-field *ngIf="(!submitted || (userForm.value.otpPin !== userPhonePin))" class="example-full-width">
+              <input matInput formControlName="otpPin" [ngClass]="{ 'is-invalid': submitted && userForm.controls['otpPin'].errors }" type="text" class="textAreaCommon" placeholder="Phone Number Verification through OTP" />
+              <div *ngIf="(submitted && userForm.controls['otpPin'].errors) || userForm.controls['otpPin'].touched || userForm.controls['otpPin'].dirty">
+                <div class="errorMsg" *ngIf="userForm.controls['otpPin'].errors != null && userForm.controls['otpPin'].errors.required == true">
+                  OTP Pin is required.
+                </div>
+              </div>
+            </mat-form-field>
+            <div class="clearFixed"></div>
+            <div class="clearFixed"></div>
+            <div class="clearFixed">&nbsp;</div>
+            <div class="matListMain iAMAddFormBtnDv companyRegis">
+              <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="/">Cancel</button>
+              <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="/adminRegisteration1" 
+              *ngIf="(!submitted || (userForm.value.otpPin !== userPhonePin))">Back</button>
+              <button mat-flat-button class="cancelUpdateButton activeBtn" *ngIf="(!submitted || (userForm.value.otpPin !== userPhonePin))">Verify</button>
+              <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="registerCompany()" *ngIf="(submitted && (userForm.value.otpPin === userPhonePin))">Submit</button>
+            </div>
+
+            
+          </div>  
+      </form>
+    </div>
+    <div class="clearFixed"></div>
+    <app-innerfooter></app-innerfooter>
+  </div>
+</div>
+
+<div class="welcomePopSection">
+  <div [hidden]="isDisplay" id="popup1" class="overlay successOverLay">
+    <div class="popup wow Ownpulse SuccesPopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+      <a id="closebtn" class="material-icons msgClose" (click)="succesPopupClose()"  >close</a>
+      <div class="content">        
+        <p class="popupSuccessMsg">You have successfully sadsa registered your Company</p>
+        <p class="freeTrialMsg">Your Free trial period has started</p>
+        <i class="material-icons successTick">done</i>
+      </div>
+    </div>
+  </div>
+
+</div>

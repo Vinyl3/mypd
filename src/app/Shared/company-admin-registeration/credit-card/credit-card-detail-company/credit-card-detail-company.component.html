@@ -1,0 +1,142 @@
+<div class="clearFixed">
+</div>
+<div class="creditCardDetails creditCardDetailsTab">
+  <div class="contentWrapper">
+    <div class="formSection">
+      <div class="contentWrapper">
+        <div class="formHeading">Credit Card Details</div>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="formWrapper regWrpp">
+          <a routerLink="/home">
+            <img src="assets/Images/innerLogo.png" alt="" class="innerLogoDiv wow Ownpulse" data-wow-delay="1.2s" data-wow-duration="1.3s"
+              style="visibility: visible; animation-duration: 2s; 
+                animation-name: Ownpulse;" />
+          </a>
+          <div class="clearFixed"></div>
+          <div class="tabSection">
+            <a routerLink="/companyRegisteration1" class="companyTabCommon companyTab">
+              <span>Company
+                <span class="activeLine"></span>
+              </span>
+            </a>
+            <a routerLink="/adminRegisteration1" class="companyTabCommon adminTab">
+              <span>Administrator</span>
+            </a>
+            <span class="companyTabCommon rightBorderNone creditCardTab companyTabactive">
+              <span>Credit Card
+                <span class="activeLine"></span>
+              </span>
+            </span>
+          </div>
+          <div class="clearFixed"></div>
+          <div class="formMainDiv">            
+            <div class="clearFixed"></div>
+            <mat-form-field class="inputHalfLeft">
+              <input matInput formControlName="addr1" type="text" class="textAreaCommon" placeholder="Address1" />
+            </mat-form-field>
+            <mat-form-field class="inputHalfRight">
+              <input matInput formControlName="addr2" type="text" class="textAreaCommon" placeholder="Address2" />
+            </mat-form-field>
+            <mat-form-field class="inputHalfLeft">
+              <input matInput formControlName="zipCode" type="text" class="textAreaCommon" placeholder="Zip Code" />
+            </mat-form-field>
+            <mat-form-field class="inputHalfRight">
+              <input matInput formControlName="state" type="text" class="textAreaCommon" placeholder="State" />
+            </mat-form-field>
+            <mat-form-field class="inputHalfLeft">
+              <input matInput formControlName="city" type="text" class="textAreaCommon" placeholder="City" />
+            </mat-form-field>
+            <mat-form-field class="inputHalfRight">
+              <input matInput formControlName="country" type="text" class="textAreaCommon" placeholder="Country" />
+            </mat-form-field>
+            <div class="clearFixed"></div>
+            <label class="material-checkbox">
+              <input (change)="FieldsChange($event)" type="checkbox" class="checkBox" />
+              <span class="termsAndcondition">billing address will be your company address.</span>
+              <div *ngIf="(submitted && userForm.controls['addBillingBox'].errors) || userForm.controls['addBillingBox'].touched || userForm.controls['addBillingBox'].dirty"
+                class="errorMsg">
+                <div *ngIf="userForm.controls['addBillingBox'].errors != null && userForm.controls['addBillingBox'].errors.required == true">
+                  Agree check box must be checked.
+                </div>
+              </div>
+            </label>
+            <mat-form-field class="inputHalfRight example-full-width">
+              <input matInput formControlName="cardName" [ngClass]="{ 'is-invalid': submitted && userForm.controls['cardName'].errors }"
+                type="text" class="textAreaCommon" placeholder="Card Holder Name" required />
+
+              <div *ngIf="(submitted && userForm.controls['cardName'].errors) || userForm.controls['cardName'].touched || userForm.controls['cardName'].dirty"
+                class="errorMsg">
+                <div *ngIf="userForm.controls['cardName'].errors != null && userForm.controls['cardName'].errors.required == true">
+                  Card Holder Name is required.
+                </div>
+                <div *ngIf="userForm.controls['cardName'].errors != null && userForm.controls['cardName'].errors.pattern">
+                  Card Holder Name allows only characters and space.
+                </div>
+              </div>
+            </mat-form-field>
+            <mat-form-field class="inputHalfRight example-full-width cardNoMain">
+              <input matInput formControlName="cardNumber" type="text" class="textAreaCommon" placeholder="Card No." ccNumber required />
+              <div *ngIf="(submitted && userForm.controls['cardNumber'].errors) || userForm.controls['cardNumber'].touched || userForm.controls['cardNumber'].dirty"
+                class="errorMsg">
+                <div *ngIf="userForm.controls['cardNumber'].errors != null && userForm.controls['cardNumber'].errors.ccNumber == true">
+                  Card Number must be valid.
+                </div>
+              </div>
+            </mat-form-field>
+            <mat-form-field class="inputHalfLeft expDate">
+              <input matInput formControlName="expiryDate" type="text" class="textAreaCommon" placeholder="Expiry Date" ccExp required />
+              <div *ngIf="(submitted && userForm.controls['expiryDate'].errors) || userForm.controls['expiryDate'].touched || userForm.controls['expiryDate'].dirty"
+                class="errorMsg">
+                <div *ngIf="userForm.controls['expiryDate'].errors != null && userForm.controls['expiryDate'].errors.expDate == true">
+                  Card Expiry Date must be valid date.
+                </div>
+              </div>
+            </mat-form-field>
+            <mat-form-field class="inputHalfRight expDate">
+              <input matInput formControlName="cvvNumber" type="text" class="textAreaCommon" placeholder="CVV" required />
+              <div *ngIf="(submitted && userForm.controls['cvvNumber'].errors) || userForm.controls['cvvNumber'].touched || userForm.controls['cvvNumber'].dirty"
+                class="errorMsg">
+                <div *ngIf="userForm.controls['cvvNumber'].errors != null && userForm.controls['cvvNumber'].errors.required == true">
+                  Card CVV Number is required.
+                </div>
+                <div *ngIf="userForm.controls['cvvNumber'].errors != null && userForm.controls['cvvNumber'].errors.pattern">
+                  Card CVV Number must be valid.
+                </div>
+              </div>
+            </mat-form-field>
+            <div class="clearFixed"></div>
+            <div class="inputmain">
+              <label class="material-checkbox noBgBorder">
+                    <input formControlName="agreeBox" type="checkbox" class="checkBox" />
+              <span class="termsAndcondition">I agree to the Terms of Use, Privacy Policy and Disclaimer.</span>
+              <div *ngIf="(submitted && userForm.controls['agreeBox'].errors) || userForm.controls['agreeBox'].touched || userForm.controls['agreeBox'].dirty"
+                class="errorMsg">
+                <div *ngIf="userForm.controls['agreeBox'].errors != null && userForm.controls['agreeBox'].errors.required == true">
+                  Agree check box must be checked.
+                </div>
+              </div>
+              </label>
+            </div>
+            <div class="inputmain">
+              <button mat-flat-button>Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="clearFixed"></div>
+      <app-innerfooter></app-innerfooter>
+    </div>
+  </div>
+</div>
+<div class="welcomePopSection">
+  <div [hidden]="isDisplay" id="popup1" class="overlay successOverLay">
+    <div class="popup wow Ownpulse SuccesPopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+      <a id="closebtn" class="material-icons msgClose" routerLink="/welcome">close</a>
+      <div class="content">        
+        <p class="popupSuccessMsg">You have successfully registered your Company</p>
+        <p class="freeTrialMsg">Your Free trial period has started</p>
+        <i class="material-icons successTick">done</i>
+      </div>
+    </div>
+  </div>
+
+</div>

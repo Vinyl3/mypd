@@ -1,0 +1,76 @@
+<div  class="clearFixed">
+</div>
+<div class="companyAddressSection">
+  <div class="clearFixed"></div>
+  <div class="formSection">
+    <div class="contentWrapper">
+      <div class="formHeading">Address</div>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="formWrapper regWrpp">
+        <a routerLink="/home"><img src="assets/Images/innerLogo.png" alt="" class="innerLogoDiv wow Ownpulse" data-wow-delay = "1.2s" data-wow-duration = "1.3s" style="visibility: visible; animation-duration: 2s; animation-name: Ownpulse;" />
+        </a>
+        <div class="clearFixed"></div>
+        <div class="tabSection">
+          <span class="companyTabCommon companyTab companyTabactive">
+            <span>Company<span class="activeLine"></span> </span>
+          </span>
+          <a routerLink="/adminRegisteration1" class="companyTabCommon adminTab"><span>Administrator</span>
+          </a>
+          <!-- <a routerLink="/creditCardDetailCompany" class="companyTabCommon rightBorderNone creditCardTab"><span>Credit Card</span>
+          </a> -->
+        </div>
+        <div class="clearFixed"></div>
+        <div class="formMainDiv">
+          <div class="breadcrumbSec">
+          <div class="starIconDiv"> </div>
+          <div class="breadIconLine"></div>
+          <div class="breadcrumbActive"></div>
+        </div>
+        <div class="clearFixed"></div>
+        <mat-form-field class="inputHalfLeft">
+          <input matInput formControlName="addr1" type="text" class="textAreaCommon" placeholder="Address 1" />
+        </mat-form-field>
+        <mat-form-field class="inputHalfRight">
+          <input matInput formControlName="state" type="text" class="textAreaCommon" placeholder="Province / State" />
+        </mat-form-field>    
+        <mat-form-field class="inputHalfLeft">
+          <input matInput formControlName="addr2" type="text" class="textAreaCommon" placeholder="Address 2" />
+        </mat-form-field>        
+        <mat-form-field class="inputHalfRight">
+          <input matInput formControlName="boxNumber" type="number" class="textAreaCommon" placeholder="Po Box Number" />
+        </mat-form-field>
+        <mat-form-field class="inputHalfLeft">
+          <input matInput formControlName="addr3" type="text" class="textAreaCommon" placeholder="Address 3" />
+        </mat-form-field>        
+        <mat-form-field class="inputHalfRight">
+          <input matInput formControlName="zipCode" [ngClass]="{ 'is-invalid': submitted && userForm.controls['zipCode'].errors }" type="text" class="textAreaCommon" placeholder="Postal / Zip Code" required />
+          <div *ngIf="(submitted && userForm.controls['zipCode'].errors) || userForm.controls['zipCode'].touched || userForm.controls['zipCode'].dirty" class="errorMsg">
+            <div *ngIf="userForm.controls['zipCode'].errors != null && userForm.controls['zipCode'].errors.required == true">
+              Zip Code is required.
+            </div>
+            <div *ngIf="userForm.controls['zipCode'].errors != null && userForm.controls['zipCode'].errors.pattern">
+                 Number and uppercase allowed.
+            </div>
+          </div>
+        </mat-form-field>
+        <mat-form-field class="inputHalfLeft floatLeft">
+          <input matInput formControlName="city" [ngClass]="{ 'is-invalid': submitted && userForm.controls['city'].errors }" type="text" class="textAreaCommon" placeholder="City" />
+        </mat-form-field>     
+        <mat-form-field class="inputHalfRight">
+          <input matInput formControlName="country" [ngClass]="{ 'is-invalid': submitted && userForm.controls['country'].errors }" type="text" class="textAreaCommon" placeholder="Country" />
+        </mat-form-field>
+        <div class="clearFixed"></div>
+        <div class="matListMain iAMAddFormBtnDv companyRegis">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="/">Cancel</button>
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="/companyRegisteration1">Back</button>
+          <button mat-flat-button class="cancelUpdateButton activeBtn" >Next</button>
+        
+        </div>
+       
+
+      </div>
+    </form>
+  </div>
+  <div class="clearFixed"></div>
+  <app-innerfooter></app-innerfooter>
+</div>
+</div> 

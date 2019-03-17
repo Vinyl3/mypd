@@ -1,0 +1,60 @@
+<div class="clearFixed"></div>
+<div class="registrationOneSection registrationStepThree mainWrapper">
+  <div class="clearFixed"></div>
+  <div class="formSection">
+    <div class="contentWrapper">
+      <div class="formHeading">Registration</div>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="formWrapper regWrpp">
+        <a routerLink="/home">
+          <img src="assets/Images/innerLogo.png" alt="" class="innerLogoDiv wow Ownpulse" data-wow-delay="1.2s" data-wow-duration="1.3s"
+            style="visibility: visible; animation-duration: 2s; 
+          animation-name: Ownpulse;" />
+        </a>
+        <div class="clearFixed"></div>
+        <div class="breadcrumbSec">
+          <div class="breadcrumbActive"> </div>
+          <div class="breadIconLine"></div>
+          <div class="breadcrumbActive"> </div>
+          <div class="breadIconLine"></div>
+          <div class="breadcrumbActive"></div>
+        </div>
+        <mat-form-field class="example-full-width passField">
+          <input matInput formControlName="passw" [ngClass]="{ 'is-invalid': submitted && userForm.controls['passw'].errors }" type="password"
+            class="textAreaCommon" placeholder="Password" />
+          <div class="errorMsg" *ngIf="(submitted && userForm.controls['passw'].errors) || userForm.controls['passw'].touched || userForm.controls['passw'].dirty">
+            <div *ngIf="userForm.controls['passw'].errors != null && userForm.controls['passw'].errors.required == true">
+              Password is required.
+            </div>
+            <div *ngIf="userForm.controls['passw'].errors != null && userForm.controls['passw'].errors.pattern">
+              Password must contain at least one special character, one number and one uppercase letter and between 8 and 32 characters
+              in length.
+            </div>
+          </div>
+        </mat-form-field>
+        <div class="clearFixed"></div>
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="confirmPassw" [ngClass]="{ 'is-invalid': submitted && userForm.controls['confirmPassw'].errors }"
+            type="password" class="textAreaCommon" placeholder="Confirm Password" />
+
+          <div class="errorMsg" *ngIf="(submitted && userForm.controls['confirmPassw'].errors) || userForm.controls['confirmPassw'].touched || userForm.controls['confirmPassw'].dirty">
+            <div *ngIf="userForm.controls['confirmPassw'].errors != null && userForm.controls['confirmPassw'].errors.required == true">
+              Confirm Password is required.
+            </div>
+            <div *ngIf="userForm.controls['confirmPassw'].errors == null && passwMatch != null && !passwMatch">
+              Password and Confirm Password must match.
+            </div>
+          </div>
+        </mat-form-field>
+        <div class="clearFixed"></div>
+        <div class="inputmain">
+          <button mat-flat-button>Submit</button>
+        </div>
+        <p class="haveAccount">Have you an account?
+          <a routerLink="/login">Login</a>
+        </p>
+      </form>
+    </div>
+    <div class="clearFixed"></div>
+    <app-innerfooter></app-innerfooter>
+  </div>
+</div>

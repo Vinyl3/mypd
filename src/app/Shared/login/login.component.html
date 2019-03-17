@@ -1,0 +1,69 @@
+<div class="loginSection">
+    <div class="contentWrapper">
+        <div class="formHeading">Login</div>
+        <div class="loginWrapper">
+            <img src="assets/Images/loginRightImg.jpg" alt="" class="rightLoginImg" />
+            <div class="loginFormSection">
+                <a routerLink="/">
+                    <img src="assets/Images/innerLogo.png" alt="" class="innerLogoDiv wow Ownpulse loginLogoSmall" data-wow-delay="1.2s" data-wow-duration="1.3s"
+                        style="visibility: visible; animation-duration: 2s; 
+               animation-name: Ownpulse;" />
+                </a>
+                <div class="clearFixed"></div>
+
+                <div class="clearFixed"></div>
+                
+                <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                        <div class="PassEmailMainDv">
+                                <div [hidden]="emailOrPass" class="errorMsg PassEmailNotmatchError">
+                                        Email/Password not matched
+                                    </div>
+                                </div>
+                                    <div class="clearFixed"></div>
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="email" type="text" class="textAreaCommon" placeholder="Email" (focus)="onPassFocus()" />
+                        <div *ngIf="(submitted && userForm.controls['email'].errors) || userForm.controls['email'].touched || userForm.controls['email'].dirty"
+                            class="errorMsg">
+                            <div *ngIf="userForm.controls['email'].errors != null && userForm.controls['email'].errors.required == true">
+                                Email is required.
+                            </div>
+                            <div *ngIf="userForm.controls['email'].errors != null && userForm.controls['email'].errors.pattern">
+                                Email must be a valid email address.
+                            </div>
+                        </div>
+                    </mat-form-field>
+                    <div class="clearFixed"></div>
+                    <mat-form-field class="example-full-width loginPassMatClass">
+                        <input matInput formControlName="passw" class="textAreaCommon" placeholder="Password" [type]="hide ? 'text' : 'password'" [ngClass]="{ 'is-invalid': submitted && userForm.controls['passw'].errors }" (focus)="onPassFocus()" />
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        <div *ngIf="(submitted && userForm.controls['passw'].errors) || userForm.controls['passw'].touched || userForm.controls['passw'].dirty"
+                            class="errorMsg">
+                            <div *ngIf="userForm.controls['passw'].errors != null && userForm.controls['passw'].errors.required == true">
+                                Password is required.
+                            </div>  
+                               <!-- <div *ngIf="userForm.controls['passw'].errors != null && userForm.controls['passw'].errors.pattern">
+                              Password must contain atleast one special character, one number and one upper case letter and between 8 and 32 characters
+                              in length.
+                            </div>							 -->
+                        </div> 
+                    </mat-form-field>
+                    
+                    <div class="clearFixed"></div>
+                    <div class="inputmain">
+                        <a routerLink="/forgetPassword" class="forgotPass">Forgot Password?</a>
+                    </div>
+                    <div class="clearFixed"></div>
+                    <div class="inputmain">
+                        <button mat-flat-button type="submit">Login</button>
+                    </div>
+                    <p class="haveAccount">Don't have an account?
+                        <a routerLink="/userRegisteration1">Sign Up</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <app-innerfooter></app-innerfooter>
+
+    </div>
+</div>

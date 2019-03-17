@@ -1,0 +1,79 @@
+<div class="clearFixed"></div>
+<div class="administratorSection">
+  <div class="clearFixed"></div>
+  <div class="formSection">
+    <div class="contentWrapper">
+      <div class="formHeading">Registration</div>
+      <form [formGroup]="userForm"  (ngSubmit)="onSubmit()" class="formWrapper regWrpp">
+        <a routerLink="/home">
+          <img src="assets/Images/innerLogo.png" alt="" class="innerLogoDiv wow Ownpulse" data-wow-delay="1.2s" data-wow-duration="1.3s" style="visibility: visible; animation-duration: 2s; animation-name: Ownpulse;" />
+        </a>
+        <div class="clearFixed"></div>
+        <div class="tabSection">
+          <span class="companyTabCommon companyTab">
+            <a routerLink="/companyRegisteration1">
+              <span>Company
+                <span class="activeLine"></span>
+              </span>
+            </a>
+          </span>
+          <span class="companyTabCommon adminTab companyTabactive">
+            <span>Administrator
+              <span class="activeLine"></span>
+            </span>
+          </span>
+          <!-- <a routerLink="/creditCardDetailCompany" class="companyTabCommon rightBorderNone creditCardTab">
+            <span>Credit Card</span>
+          </a> -->
+        </div>
+        <div class="clearFixed"></div>
+        <div class="formMainDiv">
+          <div class="breadcrumbSec">
+            <div class="breadcrumbActive"> </div>
+            <div class="breadIconLine"></div>
+            <div class="starIconDiv"> </div>
+          </div>
+          <mat-form-field class="example-full-width">
+            <input matInput appPhoneMask formControlName="officeNumber" type="text" class="textAreaCommon" placeholder="Office Number" />
+            <div *ngIf="(submitted && userForm.controls['officeNumber'].errors) || userForm.controls['officeNumber'].touched || userForm.controls['officeNumber'].dirty"
+              class="errorMsg">
+              <div *ngIf="userForm.controls['officeNumber'].errors != null && userForm.controls['officeNumber'].errors.pattern">
+                Office Number allows only numbers.
+              </div>
+            </div>
+          </mat-form-field>
+         
+          <mat-form-field class="example-full-width">
+            <input matInput appPhoneMask formControlName="cellNumber" [ngClass]="{ 'is-invalid': submitted && userForm.controls['cellNumber'].errors }"
+              type="text" class="textAreaCommon" placeholder="Cell Number with Country Code" required />
+
+            <div *ngIf="(submitted && userForm.controls['cellNumber'].errors) || userForm.controls['cellNumber'].touched || userForm.controls['cellNumber'].dirty"
+              class="errorMsg">
+              <div *ngIf="userForm.controls['cellNumber'].errors != null && userForm.controls['cellNumber'].errors.required == true">
+                Cell Number is required.
+              </div>
+              <div *ngIf="userForm.controls['cellNumber'].errors != null && userForm.controls['cellNumber'].errors.pattern">
+                Cell Number allows only numbers.
+              </div>
+            </div>
+          </mat-form-field>
+          <!-- <mat-form-field class="example-full-width matSelectClass">
+            <mat-select formControlName="desig" placeholder="Select Designation">
+              <mat-option value="Designation1">Designation1</mat-option>
+              <mat-option value="Designation2">Designation2</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+          <div class="clearFixed"></div>
+          <div class="clearFixed">&nbsp;</div>
+          <div class="matListMain iAMAddFormBtnDv companyRegis">
+            <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="/">Cancel</button>
+            <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="/companyRegisteration2">Back</button>
+            <button mat-flat-button class="cancelUpdateButton activeBtn">Next</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="clearFixed"></div>
+    <app-innerfooter></app-innerfooter>
+  </div>
+</div>

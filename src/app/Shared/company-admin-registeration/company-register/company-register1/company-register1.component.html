@@ -1,0 +1,79 @@
+<div  class="clearFixed">
+</div>
+  <div class="companyRegistSection">
+    <div class="clearFixed"></div>
+    <div class="formSection"> 
+      <div class="contentWrapper">
+          <div class="formHeading">Registration</div>
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit($event)" class="formWrapper regWrpp">
+            <a routerLink="/home"><img src="assets/Images/innerLogo.png" alt="" class="innerLogoDiv wow Ownpulse" data-wow-delay = "1.2s" data-wow-duration = "1.3s" style="visibility: visible; animation-duration: 2s; animation-name: Ownpulse;" />
+            </a>
+            <div class="clearFixed"></div>
+            <div class="tabSection">
+              <span class="companyTabCommon companyTab companyTabactive">
+                <span>Company<span class="activeLine"></span> </span>
+              </span>
+              <a routerLink="/adminRegisteration1" class="companyTabCommon adminTab"><span>Administrator</span>
+              </a>
+              <!-- <a routerLink="/creditCardDetailCompany" class="companyTabCommon rightBorderNone creditCardTab"><span>Credit Card</span>
+              </a> -->
+            </div>
+            <div class="clearFixed"></div>
+            <div class="formMainDiv ">
+              <div class="clearFixed"></div>
+              <div class="breadcrumbSec">
+                <div class="breadcrumbActive"> </div>
+                <div class="breadIconLine"></div>
+                <div class="starIconDiv"> </div>
+              </div>
+              <div class="clearFixed"></div>
+              <mat-form-field class="example-full-width">
+                <input matInput formControlName="cname" [ngClass]="{ 'is-invalid': submitted && userForm.controls['cname'].errors }" type="text" class="textAreaCommon redstar" placeholder="Company Name" required />
+                <div *ngIf="(submitted && userForm.controls['cname'].errors) || userForm.controls['cname'].touched || userForm.controls['cname'].dirty" class="errorMsg">
+                  <div *ngIf="userForm.controls['cname'].errors != null && userForm.controls['cname'].errors.required == true">
+                    Company Name is required.
+                  </div>
+                  <!-- <div *ngIf="userForm.controls['cname'].errors != null && userForm.controls['cname'].errors.pattern">
+                    Company Name allows only alphanumerics and spaces.
+                  </div> -->
+                  <div *ngIf="companyExists != null">
+                    {{companyExists}}
+                  </div>
+                </div>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput formControlName="website" [ngClass]="{ 'is-invalid': submitted && userForm.controls['website'].errors }" type="text" class="textAreaCommon" placeholder="Company Website (http://www.example.com)" required />
+                <div *ngIf="(submitted && userForm.controls ['website'].errors) || userForm.controls['website'].touched || userForm.controls['website'].dirty" class="errorMsg"><div *ngIf="userForm.controls['website'].errors != null && userForm.controls['website'].errors.required == true">
+                  Company Website is required.
+                </div>
+                <div *ngIf="websiteExists != null">
+                  {{websiteExists}}
+                </div>
+              </div>
+            </mat-form-field>
+            <mat-form-field class="example-full-width multiplelineTextarea">
+              <textarea matInput formControlName="cdetail" class="textAreaCommon textArea" placeholder="Company Details"></textarea>
+            </mat-form-field>
+            <mat-form-field class="fileInputMatFormField">
+              <ngx-mat-file-input formControlName="clogo" type="file" class="" placeholder="Company Logo" data-filetype="txt"></ngx-mat-file-input>
+              <mat-icon matSuffix class="browseIcon">folder</mat-icon>
+            </mat-form-field>
+            <div class="clearFixed"></div>
+            <div class="matListMain iAMAddFormBtnDv companyRegis">
+              <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="/">Cancel</button>
+              
+                  <button mat-flat-button class="cancelUpdateButton activeBtn">Next</button>
+                
+              </div>
+              
+             
+           
+          </div>
+
+          
+        </form>
+      </div>
+      <div class="clearFixed"></div>
+      <app-innerfooter></app-innerfooter>
+    </div>
+  </div>

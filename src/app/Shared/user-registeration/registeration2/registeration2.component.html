@@ -1,0 +1,41 @@
+<div class="clearFixed"></div>
+<div class="registrationOneSection registrationStepTwo mainWrapper">
+  <div class="formSection">
+    <div class="contentWrapper">
+      <div class="formHeading">Registration</div>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="formWrapper regWrpp">
+        <a routerLink="/home">
+          <img src="assets/Images/innerLogo.png" alt="" class="innerLogoDiv wow Ownpulse" data-wow-delay="1.2s" data-wow-duration="1.3s"
+            style="visibility: visible; animation-duration: 2s; 
+          animation-name: Ownpulse;" />
+        </a>
+        <div class="clearFixed"></div>
+        <div class="breadcrumbSec">
+          <div class="breadcrumbActive"> </div>
+          <div class="breadIconLine"></div>
+          <div class="breadcrumbActive"></div>
+          <div class="breadIconLine"></div>
+          <div class="starIconDiv"> </div>
+        </div>
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="otpPin" [ngClass]="{ 'is-invalid': submitted && userForm.controls['otpPin'].errors }" type="text"
+            class="textAreaCommon" placeholder="Enter PIN sent to your Email" />
+          <div *ngIf="(submitted && userForm.controls['otpPin'].errors) || userForm.controls['otpPin'].touched || userForm.controls['otpPin'].dirty">
+            <div class="errorMsg" *ngIf="userForm.controls['otpPin'].errors != null && userForm.controls['otpPin'].errors.required == true">
+              OTP Pin is required.
+            </div>
+          </div>
+        </mat-form-field>
+        <div class="clearFixed"></div>
+        <div class="inputmain">
+          <button mat-flat-button>Next</button>
+        </div>
+        <p class="haveAccount">Have you an account?
+          <a routerLink="/login">Login</a>
+        </p>
+      </form>
+    </div>
+    <div class="clearFixed"></div>
+    <app-innerfooter></app-innerfooter>
+  </div>
+</div>
