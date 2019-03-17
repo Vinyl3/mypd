@@ -1,0 +1,159 @@
+<div class="middle-header">
+    <span class="fontRegular">Project Detail</span>
+    <span class="dashBDcrumbs">
+      <a routerLink="/">Home</a> /
+      <a routerLink="/project/ManageProject">Manage Project</a> /
+      <span class="bdActive">Project Detail</span>
+    </span>
+  </div>
+  <div class="right_panel_content">
+    <div class="tableWrapper plolicyTableWrapper previewWrapper">
+  
+      <div class="row">
+        <div class="previewDv">
+          <div class="userNameEmailWrapper">
+          
+            <div class="previewuserName">
+              <div class=" previewLeft">Name</div>
+              <div class="previewRight">{{project.name}}</div>
+            </div>
+           
+            <div class="previewuserEmail">
+              <div class=" previewLeft">Description</div>
+              <div class=" previewRight">{{project.description}}</div>
+            </div>
+            <button class="editNameAndemail" mat-raised-button (click)="modifyProjectND()">Edit</button>
+            <div class="clear"></div>
+          </div>
+          <div>
+            <tabset>
+              <tab>
+                <span *tabHeading class="tabClass bigTabHeader" (click)="permissionType('Task')">
+                  Tasks
+                </span>
+                <div class="groupDltsSec projectDltsSec">
+                  <div class="previewTbscroll">
+                    
+                    <div class="tableWrapperMain">
+                    <mat-table [dataSource]="taskDataSource" class="previewTable">
+                      <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Task </mat-header-cell>
+                        <mat-cell *matCellDef="let task"> {{task.name}} </mat-cell>
+                      </ng-container>
+                      <ng-container matColumnDef="assignee">
+                        <mat-header-cell *matHeaderCellDef> Assignee </mat-header-cell>
+                        <mat-cell *matCellDef="let task">{{task.userEmail}} </mat-cell>
+                      </ng-container>
+                      <ng-container matColumnDef="estimatedTime">
+                        <mat-header-cell *matHeaderCellDef> Estimated Effort </mat-header-cell>
+                        <mat-cell *matCellDef="let task">{{task.estimatedTime}} </mat-cell>
+                      </ng-container>
+                      <ng-container matColumnDef="delete">
+                        <mat-header-cell *matHeaderCellDef> <button class="previewAddBtn " mat-raised-button  (click)="addTask()">Add</button> </mat-header-cell>
+                        <mat-cell *matCellDef="let task">
+                          <mat-icon (click)="removePopUp('Task',task.id)">delete_outline</mat-icon>
+                        </mat-cell>
+                      </ng-container>
+                      <mat-header-row *matHeaderRowDef="taskColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: taskColumns;"></mat-row>
+                    </mat-table>
+                    </div>
+                  </div>
+                </div>
+              </tab>
+              <tab>
+                <span *tabHeading class="tabClass bigTabHeader" (click)="permissionType('User')">
+                  Users
+                </span>
+  
+  
+                <div class="groupDltsSec">
+                  <div class="previewTbscroll">
+                    <div class="tableWrapperMain">
+                    <mat-table [dataSource]="userDataSource" class="previewTable">
+                      <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> User </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.firstName}} {{user.lastName}}</mat-cell>
+                      </ng-container>
+  
+                      <ng-container matColumnDef="email">
+                        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                        <mat-cell *matCellDef="let user">{{ user.userEmail}} </mat-cell>
+                      </ng-container>
+  
+                      <ng-container matColumnDef="delete">
+                        <mat-header-cell *matHeaderCellDef> <button class="previewAddBtn " mat-raised-button (click)="addUser()">Add</button> </mat-header-cell>
+                        <mat-cell *matCellDef="let user">
+                          <mat-icon (click)="removePopUp('User',user.id)">delete_outline</mat-icon>
+                        </mat-cell>
+                      </ng-container>
+  
+                      <mat-header-row *matHeaderRowDef="userColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: userColumns;"></mat-row>
+                    </mat-table>
+                    </div>
+                  </div>
+                </div>
+              </tab>
+
+              <tab>
+                <span *tabHeading class="tabClass bigTabHeader" (click)="permissionType('SubTask')">
+                  Subtask
+                </span>
+  
+  
+                <div class="groupDltsSec subTaskSec">
+                  <div class="previewTbscroll">
+                    <div class="tableWrapperMain">
+                    <mat-table [dataSource]="subTaskDataSource" class="previewTable">
+                      <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Subtask </mat-header-cell>
+                        <mat-cell *matCellDef="let sTask"> {{sTask.name}}</mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="creator">
+                        <mat-header-cell *matHeaderCellDef> Creator </mat-header-cell>
+                        <mat-cell *matCellDef="let user"> {{user.firstName}} {{user.lastName}}</mat-cell>
+                      </ng-container>
+  
+                      <ng-container matColumnDef="edit">
+                        <mat-header-cell *matHeaderCellDef> <button class="previewAddBtn " mat-raised-button (click)="addSubTask()">Add</button> </mat-header-cell>
+                        <mat-cell *matCellDef="let sTask">
+                          <span class="subTaskEditBtn"> <mat-icon (click)="editSubTask(sTask)">edit</mat-icon></span>
+                        </mat-cell>
+                      </ng-container>
+  
+                      <mat-header-row *matHeaderRowDef="sTaskColumns"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: sTaskColumns;"></mat-row>
+                    </mat-table>
+                    </div>
+                  </div>
+                </div>
+              </tab>
+              
+            </tabset>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="matListMain iAMAddFormBtnDv previewBtnDv">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="backClicked()">Back</button>
+        </div>
+    </div>
+  </div>
+  <div class="welcomePopSection">
+    <div [hidden]="removePopup" id="popup1" class="overlay deleteOverlay">
+      <div class="popup wow Ownpulse deletePopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+        <a id="closebtn" class="material-icons msgClose" (click)="removePopUpClose()">close</a>
+        <div class="content">
+          <p class="popupSuccessMsg">Are you sure you want to delete {{tabType}} from Project?</p>
+          <i class="material-icons deleteCrossIco">priority_high</i>
+          <div class="matListMain popUpBtnDv">
+            <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="removePopUpClose()">Cancel</button>
+            <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="removeTaskorUser()">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

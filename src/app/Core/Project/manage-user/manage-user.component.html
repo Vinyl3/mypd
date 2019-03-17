@@ -1,0 +1,53 @@
+<div class="middle-header">
+    <span class="fontRegular">Add user</span>
+    <span class="dashBDcrumbs">
+      <a routerLink="/">Home</a> /
+      <a routerLink="../ManageProject">Manage Project</a> /
+      <span class="bdActive">Add user</span>
+    </span>
+  </div>
+  <div class="right_panel_content">
+    <div class="row">
+      <h2 class="headerTwo">Users</h2>
+      <div class="tableWrapper policyTableWrapper">
+        
+        
+        <div class="clear"></div>
+  
+        <div class="table-wrapper iamcommonTableclass">
+          <div class="tableWrapperMain">
+          <mat-table [dataSource]="dataSource" class="mat-elevation-z8 checkBoxTable">
+            <ng-container matColumnDef="select">
+              <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
+              <mat-cell *matCellDef="let user">
+               <mat-checkbox (change)="onUserChange($event, user)" [checked]="userChecked(user)"></mat-checkbox>              
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+              <mat-cell *matCellDef="let user">
+                <a>{{user.firstName}} {{user.lastName}}</a>
+                <!-- <a (click)="projectDetail(user)">{{user.name}} </a> -->
+              </mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+              <mat-cell *matCellDef="let user">{{user.userEmail}}  </mat-cell>
+            </ng-container>
+  
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let user; columns: displayedColumns;">
+            </mat-row>
+          </mat-table>
+          </div>
+        </div>
+        <div class="matListMain iAMAddFormBtnDv previewBtnDv">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="backClicked()">Back</button>
+          <button (click)="checkProjectUsers()" mat-flat-button class="cancelUpdateButton activeBtn">Save</button>
+          <div [hidden]="isValidated" class="redMsgCenter">Please select atleast one User</div>
+        </div>
+      </div>
+      <!-- table end -->
+    </div>
+  </div>

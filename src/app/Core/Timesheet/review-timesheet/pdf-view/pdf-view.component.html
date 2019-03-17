@@ -1,0 +1,12 @@
+<div class="subtaskDialogWrapper reviewPdf">
+  <a id="closebtn" class="material-icons msgClose" (click)="closePdf()">close</a>
+  <div mat-dialog-content class="">
+    <div class="content pdfWrapper">
+      <div class="wrapper">
+        <div class="loader-box" *ngIf="!show">
+          <div class="loader"></div>
+        </div>
+        <pdf-viewer (after-load-complete)="onLoad()" [src]="src" [external-link-target]="'blank'"></pdf-viewer>
+      </div>
+    </div>
+  </div>

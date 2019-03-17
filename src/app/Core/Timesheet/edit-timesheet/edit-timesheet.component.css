@@ -1,0 +1,36 @@
+.timesheetWrapper .mat-cell:nth-child(2), .mat-footer-cell:nth-child(2), .timesheetWrapper .mat-header-cell:nth-child(2){
+    padding: 0 35px 0 0px !important;
+    flex: 0 0 11%;
+}
+
+.timesheetWrapper .mat-cell:nth-child(3), .mat-footer-cell:nth-child(3), .timesheetWrapper .mat-header-cell:nth-child(3) {
+    padding: 0 35px 0 0px !important;
+    flex: 0 0 22%;
+}
+
+.timesheetWrapper .mat-cell:nth-child(4), .mat-footer-cell:nth-child(4), .timesheetWrapper .mat-header-cell:nth-child(4) {
+    padding: 0 35px 0 0px !important;
+    flex: 0 0 22%;
+}
+
+.timesheetWrapper .mat-cell:nth-child(5), .mat-footer-cell:nth-child(5), .timesheetWrapper .mat-header-cell:nth-child(5) {
+    padding: 0 35px 0 0px !important;
+    flex: 0 0 22%;
+    display: flex;
+    justify-content: end;
+}
+
+.timesheetWrapper .mat-cell:nth-child(6), .pdfView .mat-footer-cell:nth-child(6), .timesheetWrapper .mat-header-cell:nth-child(6) {
+    padding: 0 35px 0 0px !important;
+    flex: 0 0 16%;
+    display: flex;
+    justify-content: center;
+}
+
+.companyLogoMain.timesheetName span {
+    font-size: 16px;
+}
+
+.companyLogoMain.timesheetName{
+    max-width: 100%;
+}

@@ -1,0 +1,98 @@
+<div class="middle-header">
+  <span class="fontRegular">Review Time Sheet</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/">Home</a> /
+    <span class="bdActive">Review Time Sheet</span>
+  </span>
+</div>
+
+<div class="right_panel_content timesheetMain reviewTimesheet">
+  <tabset>
+    <tab *ngFor="let project of projectList">
+      <span *tabHeading class="tabClass" (click)="getTimesheets(project)">
+        <p>{{project.name}}</p>
+      </span>
+
+      <div class="timesheetWrapper reviewTimesheetWrapper tableWrapper">
+        <div class="companylogoSec reviewCompanylogoSec">
+          <div class="companyLogoMain">
+            <img alt="" src="../../assets/Images/companyLogo.png" class="companyLogoDiv" />
+            <span> Company Name </span>
+          </div>
+          <!-- <div class="reviewDatemaindiv">
+            <div class="datemaindiv">
+              <span class="material-icons date_range">date_range</span>
+              <span class="date_Text">{{date | date:'MMMM'}}'{{date | date: 'yy'}}</span>
+            </div>
+          </div> -->
+        </div>
+        <div class="clear"></div>
+        <div class="headingAndBtnWrapper">
+          <div class="actionBtnSec reviewTimeActionBtn">
+            <button mat-raised-button [disabled]="timesheetArray.length ==0" [class.active]="timesheetArray.length>0" (click)="approve()" class="commonBtnClass aAddBtn aEditBtn ">
+              <i class="tiny material-icons">check</i>
+              <span>Approve</span>
+            </button>
+            <button mat-raised-button [disabled]="timesheetArray.length ==0" [class.active]="timesheetArray.length>0" (click)="reject()" class="commonBtnClass aDeleteBtn">
+              <i class="tiny material-icons">close</i>
+              <span>Reject</span>
+            </button>
+          </div>
+          <h2 class="headerTwo">Submitted Time Sheet</h2>
+        </div>
+        <div class="clear"></div>
+        <div class="table-wrapper iamcommonTableclass">
+          <div class="tableWrapperMain">
+            <mat-table [dataSource]="dataSource" class="mat-elevation-z8 timeSheetTable">
+
+              <ng-container matColumnDef="select">
+
+                <mat-header-cell *matHeaderCellDef>
+                </mat-header-cell>
+
+                <mat-cell *matCellDef="let timesheet">
+                  <mat-checkbox (change)="onChange($event, timesheet)"></mat-checkbox>
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="timesheet">
+                <mat-header-cell *matHeaderCellDef>Time Sheet</mat-header-cell>
+                <mat-cell *matCellDef="let timesheet">
+                  <a (click)="openPDF(timesheet.name)"> {{timesheet.name.substring(0,timesheet.name.length-9)}} </a>
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="submittedDate">
+                <mat-header-cell *matHeaderCellDef>Submitted Date</mat-header-cell>
+                <mat-cell *matCellDef="let timesheet"> {{displayDate(timesheet.submittedOn)}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+                <mat-cell *matCellDef="let timesheet"> {{timesheet.status}} </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let timesheet; columns: displayedColumns;">
+              </mat-row>
+            </mat-table>
+          </div>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>
+<div>
+  <!-- <app-pdf-view [showMePartially]="CommonUtilService.showVar"></app-pdf-view> -->
+</div>
+<!-- 
+<div class="welcomePopSection">
+  <div [hidden]="isPopupHidden" id="popup1" class="overlay deleteOverlay">
+    <div class="popup wow Ownpulse deletePopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+      <a id="closebtn" class="material-icons msgClose" (click)="cancelList()">close</a>
+      <div class="content">
+         
+      </div>
+
+  </div>
+</div> -->

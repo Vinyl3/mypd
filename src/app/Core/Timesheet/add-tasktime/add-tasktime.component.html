@@ -1,0 +1,36 @@
+<div class="subtaskDialogWrapper">
+    <a id="closebtn" class="material-icons msgClose" (click)="closeTaskTime()">close</a>
+    <div mat-dialog-content class="subTaskDialogBox subTaskMain">
+
+        <form [formGroup]="myForm" novalidate>
+            <div class="inputTaskName">
+                <mat-form-field class="subTaskDate">
+                    <input matInput placeholder="Task Name" [(ngModel)]="taskName" [ngModelOptions]="{standalone: true}" readonly/>
+                </mat-form-field>
+            </div>
+
+            <div class="subFieldFullClass">
+                <mat-form-field class="subTaskDate">
+                    <input matInput [matDatepicker]="datePicker" [(ngModel)]="subTaskDate" placeholder="Date" formControlName="stEntryDate" readonly required/>
+                    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datePicker></mat-datepicker>
+                    <mat-error *ngIf="myForm.controls['stEntryDate'].hasError('required')">
+                        Enter date
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="subFieldClass" formArrayName="formArray">
+                <div *ngFor="let control of getControls(); let i = index">
+                    <app-tasktime-template [myForm]="myForm.controls.formArray.controls[i]" [editableData]="editableDataValue" [options]="options"></app-tasktime-template>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+            <i *ngIf="editFlag==false" class="material-icons greenPlusIco" (click)="addInput()">add</i>
+        </form>
+    </div>
+    <div mat-dialog-actions class="subTaskDialogBoxAction">
+        <button mat-flat-button class="cancelUpdateButton" (click)="addEditTimeLog()" [disabled]="!myForm.valid">Save</button>
+    </div>
+</div>

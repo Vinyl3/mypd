@@ -1,0 +1,104 @@
+.table-wrapper{
+    width: 100%;
+    
+}
+
+
+
+.example-element-row:not(.example-expanded-row):hover {
+  background: #f5f5f5;
+}
+
+.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row mat-cell {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+/* .example-element-description {
+  padding: 16px;
+} */
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+
+/* for Subtask */
+
+.ng-star-inserted{
+  line-height: 40px !important;
+}
+.tablecollapseOpenIco.ng-star-inserted{
+  background: #6da74a;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  line-height: 1 !important;
+}
+mat-footer-row, mat-row {
+    min-height: initial !important;
+    height: initial !important;
+}
+.example-detail-row {
+  min-height: 0 !important;
+}
+.timesheetWrapper .matCell100{
+  width: 100%;
+    flex: 0 0 100% !important;
+    padding:0 !important;
+}
+.timesheetWrapper .example-detail-row .mat-header-row {
+  display: none;
+}
+.example-element-detail{
+  width: 100%;
+}
+.example-element-description {
+  width: 100%;
+}
+
+.timesheetWrapper .example-detail-row mat-footer-row:last-child, mat-row:last-child {
+  height: initial !important;
+  max-height: initial !important;
+  margin: 0;
+  padding: 0;
+}
+.timesheetWrapper .example-detail-row .mat-table {
+  padding: 0;
+  border: 0;
+  background: #fafafa;
+  border-top:1px solid #e5e5e5;
+}
+
+.example-element-row{
+  border: 0;
+}
+
+.timesheetMsg{
+  margin: 0px auto 16px;
+  line-height: 1;
+}

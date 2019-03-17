@@ -1,0 +1,34 @@
+<div class="middle-header">
+  <span class="fontRegular">{{actionName}} SubTask</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/">Home</a> /
+    <a routerLink="../ManageProject">Manage Project</a> /
+    <span class="bdActive">{{actionName}} SubTask</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="row">
+
+    <div class="formSection">
+      <h1 class="headerTwo formHeader">{{actionName}} SubTask</h1>
+      <form class="Addform">
+        <div [hidden]="isValid" class="redMsgCenter">Please enter Sub-Task Name and Project</div>
+        <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+          <input matInput type="text" placeholder="Sub-Task Name" [(ngModel)]="subTaskName" [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+        <div class="clear"></div>
+
+        <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+          <input matInput type="text" placeholder="Project Name" [(ngModel)]="projectName" [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+        <div class="clear"></div>
+
+        <div class="matListMain iAMAddFormBtnDv" style="margin-top: 20px;">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManageProject">Cancel</button>
+          <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="checkSubTask()">{{actionName}}</button>
+        </div>
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>

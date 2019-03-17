@@ -1,0 +1,40 @@
+<form [formGroup]="myForm" class="taskTimeForm">
+  <div class="subtextArea">
+    <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+      <input type="text" placeholder="Subtask" aria-label="Sub Task" [(ngModel)]="subTaskName" matInput formControlName="stName" [matAutocomplete]="auto" required/>
+       <!-- [matAutocomplete]="auto" -->
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+        <mat-error *ngIf="myForm.controls['stName'].hasError('required')">
+              Please enter subTask
+        </mat-error>
+        <!-- <mat-error *ngIf="myForm.controls['stName'].hasError('minlength')">
+              Please enter minimum 8 character
+        </mat-error> -->
+    </mat-form-field> 
+  </div>
+
+  <div class="subTaskDscrptnMain">
+    <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+      <textarea matInput type="text" placeholder="Description" [(ngModel)]="subTaskDesc" formControlName="stDesc"></textarea>      
+    </mat-form-field>
+  </div>
+  <div class="subTaskDrtnMain">
+    <mat-form-field class="subTaskDrtnWrapper">
+      <mat-icon class="subTaskDrtnIco">access_time</mat-icon>
+      <input matInput type="number" placeholder="Duration"  [(ngModel)]="subTaskTime"  formControlName="stDuration" required />
+      <mat-error *ngIf="myForm.controls['stDuration'].hasError('required')">
+          Please enter duration 
+        </mat-error>
+        <mat-error *ngIf="myForm.controls['stDuration'].hasError('min')">
+            Please enter valid time
+      </mat-error>
+          <mat-error *ngIf="myForm.controls['stDuration'].hasError('max')">
+              Required max 2 character
+        </mat-error>
+    </mat-form-field>
+  </div>
+</form>

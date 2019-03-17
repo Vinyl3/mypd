@@ -1,0 +1,52 @@
+<div class="middle-header">
+  <span class="fontRegular">Create Task</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/">Home</a> /
+    <a routerLink="../ManageProject">Manage Project</a> /
+    <span class="bdActive">Create Task</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="row">
+    <div class="formSection">
+      <h1 class="headerTwo formHeader">Create Task</h1>
+      <form class="Addform">
+        <div [hidden]="isValid" class="redMsgCenter">All fields are required.</div>
+        <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+          <input matInput type="text" placeholder="Task Name" [(ngModel)]="taskName" [ngModelOptions]="{standalone: true}" required />
+        </mat-form-field>
+        <div class="clear"></div>
+
+       <!-- <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+        <input type="text" placeholder="User Name" aria-label="User Name" [(ngModel)]="assignee" matInput [formControl]="nameFormControl"
+            [matAutocomplete]="auto" />
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let user of filteredOptions | async" [value]="user">
+              {{user.firstName}} {{user.lastName}} 
+            </mat-option>
+          </mat-autocomplete>       
+         
+        </mat-form-field>  -->
+        <div class="example-full-width loginPassMatClass iAMMatClass" [className]="assigneEerrorclass">
+          <ng-select [items]="options" bindLabel="fullName" placeholder="User Name"  [(ngModel)]="assignee" [ngModelOptions]="{standalone: true}" (blur)="userErrorFunction()"  >
+          </ng-select>
+        </div>
+        <div class="clear"></div>
+        <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+          <input matInput type="text" placeholder="Project Name" [(ngModel)]="projectName" [ngModelOptions]="{standalone: true}" readonly />
+        </mat-form-field>
+        <div class="clear"></div>
+        <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+          <input matInput type="number" placeholder="Estimated Effort Time" [(ngModel)]="estimatedTime" [ngModelOptions]="{standalone: true} "
+          required/>
+        </mat-form-field>
+
+        <div class="matListMain iAMAddFormBtnDv" style="margin-top: 20px;">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManageProject">Cancel</button>
+          <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="checkTaskNA()">Create</button>
+        </div>
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,174 @@
+<div class="middle-header">
+  <span class="fontRegular">Time Sheet</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/">Home</a> /
+    <span class="bdActive">Time Sheet</span>
+  </span>
+</div>
+<div class="right_panel_content timesheetMain">
+  <tabset>
+    <tab *ngFor="let project of projectList">
+      <span *tabHeading class="tabClass" (click)="getTaskSubTaskList(project)">
+        <p>{{project.name}}</p>
+      </span>
+      <div class="timesheetWrapper tableWrapper">
+        <div class="companylogoSec">
+          <div class="companyLogoMain">
+            <img alt="" src="../../assets/Images/companyLogo.png" class="companyLogoDiv" />
+            <span> Company Name </span>
+          </div>
+          <div class="datemaindiv">
+            <span class="material-icons date_range">date_range</span>
+            <span class="date_Text">{{date | date:'MMMM'}}'{{date | date: 'yy'}} </span>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="actionBtnSec">
+          <button mat-raised-button class="commonBtnClass aAddBtn" [disabled]="taskArray.length !=1" [class.active]="taskArray.length==1" (click)="addTimeLog()">
+            <i class="tiny material-icons">add</i>
+            <span>Add</span>
+          </button>
+          
+          <button mat-raised-button class="commonBtnClass aDeleteBtn" [disabled]="subtaskArray.length==0" [class.active]="subtaskArray.length>=1 "
+            (click)="cancelDelete()">
+            <i class="tiny material-icons">delete</i>
+            <span>Delete</span>
+          </button>
+
+          <button mat-raised-button class="commonBtnClass aAddBtn aEditBtn " [disabled]="subtaskArray.length!=1" [class.active]="subtaskArray.length==1" (click)="editTimeLog()">
+            <i class="tiny material-icons">edit</i>
+            <span>Edit</span>
+          </button>
+
+          <button  *ngIf="timelogs.length>0" mat-raised-button class="commonBtnClass aAddBtn aEditBtn btnWithoutIcon" [class.active]="true" (click)="submitTimeLog()">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="greenMsgWithRibbon timesheetMsg" [hidden]="CommonUtilService.greenMsgRibbonIsHidden">{{CommonUtilService.successMsgGreen}} <i class="material-icons msgIAMClose" (click)="CommonUtilService.greenMsgRibbonIsHidden = true">close</i></div>
+        <div class="clear"></div>
+        <div class="example-container mat-elevation-z8">
+          <div class="table-wrapper">
+            <div class="tableWrapperMain iamcommonTableclass">
+              <div class="tableWrapperMain" >
+                <mat-table #table [dataSource]="allTasks" multiTemplateDataRows class="mat-elevation-z8 timeSheetTable">
+
+                  <ng-container matColumnDef="select">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let task; let tIndex = dataIndex">
+                      <mat-checkbox [checked]="taskIndex == tIndex" (change)="onTaskSelect($event,task,tIndex)" ></mat-checkbox>
+                    </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="plusminusicon">
+                    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                    <mat-cell *matCellDef="let task">
+                      <i class="material-icons tablecollapseOpenIco" *ngIf="expandedElement !== task" (click)="expandedElement = task">add</i>
+                      <i class="large material-icons tablecollapseOpenIco" *ngIf="expandedElement === task" (click)="expandedElement = task ? 'expanded' : 'collapsed'">remove</i>
+                    </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="task">
+                    <mat-header-cell *matHeaderCellDef> Task </mat-header-cell>
+                    <mat-cell *matCellDef="let task; let i = dataIndex">{{task.name}}</mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="subtask">
+                    <mat-header-cell *matHeaderCellDef> Subtask :&nbsp;
+                      <span> Description</span>
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let task"> </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="date">
+                    <mat-header-cell *matHeaderCellDef>
+                      <i class="large material-icons">access_time</i> &nbsp;Duration(hrs.)</mat-header-cell>
+                    <mat-cell *matCellDef="let task"> </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="duration">
+                    <mat-header-cell *matHeaderCellDef>
+                      <i class="large material-icons">date_range</i> &nbsp;Date </mat-header-cell>
+                    <mat-cell *matCellDef="let task"> </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="expandedDetail">
+                    <mat-cell *matCellDef="let task; let i = dataIndex" [attr.colspan]="displayedColumns.length" class="matCell100">
+                      <div class="example-element-detail" [@detailExpand]="task == expandedElement ? 'expanded' : 'collapsed'">
+                        <div class="example-element-description">
+                          <mat-table [dataSource]="timelogs" class="mat-elevation-z8" width="100%">
+                           
+                            <ng-container matColumnDef="select">
+                              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                              <mat-cell *matCellDef="let subTask; let index = index">
+                                <mat-checkbox  [checked]="stIndex.indexOf(index) > -1" (change)="onSubTaskSelect($event, subTask, index,i)" *ngIf="subTask.task == task.name"></mat-checkbox>
+                              </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="blank1">
+                              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                              <mat-cell *matCellDef="let subTask"><span *ngIf="subTask.task == task.name"></span></mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="blank2">
+                              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                              <mat-cell *matCellDef="let subTask"><span *ngIf="subTask.task == task.name"></span></mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="subtask">
+                              <mat-header-cell *matHeaderCellDef> SubTask Detail </mat-header-cell>
+                              <mat-cell *matCellDef="let subTask; let index = renderIndex"><span *ngIf="subTask.task == task.name">{{subTask.subtask}}   : {{subTask.description}} </span></mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="duration">
+                              <mat-header-cell *matHeaderCellDef>
+                                <i class="large material-icons">access_time</i>Duration</mat-header-cell>
+                              <mat-cell *matCellDef="let subTask"><span *ngIf="subTask.task == task.name">{{subTask.duration}} </span> </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="date">
+                              <mat-header-cell *matHeaderCellDef>
+                                <i class="large material-icons">date_range</i>SubTask Date</mat-header-cell>
+                              <mat-cell *matCellDef="let subTask"><span *ngIf="subTask.task == task.name">{{displayDate(subTask.date)}} </span> </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="subTaskColumn"></mat-header-row>
+                            <mat-row [ngClass]="{'rowBorderNone': row.task != task.name}" *matRowDef="let row; columns: subTaskColumn;"></mat-row>
+                          </mat-table>
+                          
+                        </div>
+                      </div>
+                    </mat-cell>
+                  </ng-container>
+
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let task; columns: displayedColumns;" class="example-element-row" [class.example-expanded-row]="expandedElement === task"></mat-row>
+                  <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row">
+                  </mat-row>
+                </mat-table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>
+<div>
+  <!-- <app-create-pdf [showMePartially]="CommonUtilService.showVar"></app-create-pdf> -->
+</div>
+<!-- delete popup Code -->
+<div class="welcomePopSection">
+  <div [hidden]="isPopupHidden" id="popup1" class="overlay deleteOverlay">
+    <div class="popup wow Ownpulse deletePopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+      <a id="closebtn" class="material-icons msgClose" (click)="cancelDelete()">close</a>
+      <div class="content">
+        <p class="popupSuccessMsg">Are you sure you want to delete  {{subtaskArray.length}}  time entry/entries?</p>
+        <i class="material-icons deleteCrossIco">priority_high</i>
+        <div class="matListMain popUpBtnDv">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="cancelDelete()">Cancel</button>
+          <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="deleteTimelogs()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

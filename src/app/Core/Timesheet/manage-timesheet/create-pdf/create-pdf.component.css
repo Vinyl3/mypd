@@ -1,0 +1,185 @@
+.table-wrapper{
+    width: 100%;
+    
+}
+
+
+
+.example-element-row:not(.example-expanded-row):hover {
+  background: #f5f5f5;
+}
+
+.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row mat-cell {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  /* border: 2px solid black; */
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+
+/* for Subtask */
+
+.ng-star-inserted{
+  line-height: 40px !important;
+}
+.tablecollapseOpenIco.ng-star-inserted{
+  background: #6da74a;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  line-height: 1 !important;
+}
+mat-footer-row, mat-row {
+    min-height: initial !important;
+    height: initial !important;
+}
+.example-detail-row {
+  min-height: 0 !important;
+}
+.timesheetWrapper .matCell100{
+  width: 100%;
+    flex: 0 0 100% !important;
+    padding:0 !important;
+}
+.timesheetWrapper .example-detail-row .mat-header-row {
+  display: none;
+}
+.example-element-detail{
+  width: 100%;
+}
+.example-element-description {
+  width: 100%;
+}
+
+.timesheetWrapper .example-detail-row mat-footer-row:last-child, mat-row:last-child {
+  height: initial !important;
+  max-height: initial !important;
+  margin: 0;
+  padding: 0;
+}
+.timesheetWrapper .example-detail-row .mat-table {
+  padding: 0;
+  border: 0;
+  background: #fafafa;
+  border-top:1px solid #e5e5e5;
+}
+
+/* .example-element-row{
+  border: 0;
+} */
+/* .subTaskDataTable mat-footer-cell{
+  display: none;
+}
+.subTaskDataTable mat-footer-cell:last-child{
+  display: block !important;
+} */
+
+.pdfTbSec mat-table mat-row mat-footer-row {
+  display:none;
+}
+
+.pdfTbSec mat-table mat-row:last-child mat-footer-row{
+  display:block;
+  background: #fff;
+}
+
+.pdfTbSec mat-table mat-row:last-child mat-footer-cell span{
+    width: 200px;
+}
+
+/* .pdfTbSec mat-table mat-row:last-child mat-footer-cell .totaltext{
+  margin-left: 430px;
+    text-align: right;
+} */
+
+.timesheetWrapper .mat-header-row{
+  box-shadow:none;
+}
+
+.ng-star-inserted[_ngcontent-c10] {
+  line-height: 35px !important;
+}
+
+.mat-dialog-content {
+  overflow: hidden !important;
+}
+
+
+.btnWithoutIcon {
+  line-height: 37px;
+}
+
+.loader-box div {
+  display: inline-block;
+  margin: auto 0;
+}
+.loader-box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  background-color: rgba(0,0,0,0.54) !important;
+}
+/* .loader-box img {
+  width: 120px;
+  margin: auto 0;
+} */
+.loader-box .loader {
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid #75b048;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 1.5s linear infinite; /* Safari */
+  animation: spin 1.5s linear infinite;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left:0;
+  margin: auto;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+
+}

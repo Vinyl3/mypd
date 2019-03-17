@@ -1,0 +1,37 @@
+<div class="middle-header">
+    <span class="fontRegular">{{actionName}} Project</span>
+    <span class="dashBDcrumbs">
+      <a routerLink="/">Home</a> /
+      <a routerLink="../ManageProject">Manage Project</a> /
+      <span class="bdActive">{{actionName}} Project</span>
+    </span>
+  </div>
+  <div class="right_panel_content">
+    <div class="row">
+      
+      <div class="formSection">
+        <h1 class="headerTwo formHeader">{{actionName}} Project</h1>
+        <form class="Addform">
+          <div [hidden]="isValid" class="redMsgCenter">Please enter Project Name and Description</div>
+          <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+            <input matInput type="text" placeholder="Project Name" [(ngModel)]="projectName" [ngModelOptions]="{standalone: true}" />
+          </mat-form-field>
+          <div class="clear"></div>
+          <mat-form-field class="example-full-width loginPassMatClass iAMMatClass iAMtextAreaClass">
+            <textarea matInput type="text" placeholder="Description" [(ngModel)]="projectDesc" [ngModelOptions]="{standalone: true}"></textarea>
+          </mat-form-field>
+          <div class="clear">&nbsp;</div>
+          <!-- <div class="clear">&nbsp;</div>
+          <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+            <input matInput type="text" placeholder="Assign to" [(ngModel)]="projectAssignTo" [ngModelOptions]="{standalone: true}"/>
+          </mat-form-field> -->
+  
+          <div class="matListMain iAMAddFormBtnDv" style="margin-top: 20px;">
+            <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManageProject">Cancel</button>
+            <button (click)="checkProjectND()"  mat-flat-button class="cancelUpdateButton activeBtn">Save</button>
+          </div>
+          <div class="clear"></div>
+        </form>
+      </div>
+    </div>
+  </div>

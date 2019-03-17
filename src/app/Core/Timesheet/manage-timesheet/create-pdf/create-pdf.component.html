@@ -1,0 +1,121 @@
+<div class="wrapper">
+    <div class="loader-box" *ngIf="!show">
+         <!-- <img src="../../assets/Images/spinner.gif" class="img-responsive" /> -->
+         <div class="loader"></div>
+    </div>
+<div class="subtaskDialogWrapper pdfView">
+  <!-- <div class="popup wow Ownpulse deletePopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;"> -->
+    <a id="closebtn" class="material-icons msgClose" (click)="closePdf()">close</a>
+    <div mat-dialog-content class="">
+    <div class="content pdfWrapper">
+      
+      <mat-card id="contentToConvert">
+        <div>
+          <div class="companylogoSec">
+            <div class="companyLogoMain">
+              <img alt="" src="../../assets/Images/companyLogo.png" class="companyLogoDiv" />
+              <span> Company Name </span>
+            </div>
+
+            <div class="pdfUserDltsMain">
+              <div class="userDltsRow">
+                <div class="pdfdltsCommon pdfUsernameHeading"> User Name </div>
+                <div class="pdfdltsCommon pdfUsername"> {{userName}} </div>
+              </div>
+              <div class="userDltsRow">
+                <div class="pdfdltsCommon pdfUsernameHeading"> Timesheet </div>
+                <div class="pdfdltsCommon pdfUsername"> {{timesheetName.substring(0,timesheetName.length-9)}} </div>
+              </div>
+              <div class="userDltsRow">
+                <div class="pdfdltsCommon pdfSubmissionHeading"> Submission Date </div>
+                <div class="pdfdltsCommon pdfSubmission"> {{submittedOn}} </div>
+              </div>
+              <div class="userDltsRow">
+                <div class="pdfdltsCommon pdfbillingHeading"> Billing Period </div>
+                <div class="pdfdltsCommon pdfUserBilling"> {{billingPeriod}} </div>
+                <!-- <input class="pdfdltsCommon pdfUserBilling" placeholder="Billing Period" [(ngModel)]="billingPeriod" [ngModelOptions]="{standalone: true}"/> -->
+              </div>
+            </div>
+
+          </div>
+          <div class="clear"></div>
+
+          <div class="pdfTbSec timesheetWrapper tableWrapperMain">
+            <mat-table  *ngIf="dataSource" [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 timeSheetTable" width="100%">
+              <ng-container matColumnDef="task">
+                <mat-header-cell *matHeaderCellDef>Tasks</mat-header-cell>
+                <mat-cell *matCellDef="let taskList">{{taskList.task}}</mat-cell>
+                <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+                <mat-cell *matCellDef="let taskList"> {{displayDate(taskList.date)}} </mat-cell>
+                <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="subtask">
+                <mat-header-cell *matHeaderCellDef>Subtasks</mat-header-cell>
+                <mat-cell *matCellDef="let taskList">{{taskList.subtask}}</mat-cell>
+                <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+                <mat-cell *matCellDef="let taskList">{{taskList.description == 'null' ?"":taskList.description}}</mat-cell>
+                <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="duration">
+                <mat-header-cell *matHeaderCellDef>Duration(hrs.)</mat-header-cell>
+                <mat-cell *matCellDef="let taskList"> {{taskList.duration}} </mat-cell>
+                <mat-footer-cell *matFooterCellDef>
+                  <span class="totaltext">Total hours</span>
+                  <span class="totalhours">{{getTotalTime()}}</span>
+                </mat-footer-cell>
+                <!-- <mat-footer-cell *matFooterCellDef> Total {{getTotalTime() | currency}}</mat-footer-cell> -->
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let task; columns: displayedColumns;" class="example-element-row"></mat-row>
+              <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
+            </mat-table>
+            <div class="clear"></div>
+           
+          </div>
+         
+        
+          <div class="clear"></div>
+
+        
+         
+        </div>
+      </mat-card>
+
+   
+    </div>
+    
+
+    <div class="clear"></div>
+
+    <div mat-dialog-actions class="createPdfDialogBoxAction">
+      <div class="mat-flat-button ">
+        <mat-checkbox (change)="agreeButton($event)"></mat-checkbox>
+        <span class="checkboxText">Please Confirm. Once Submitted the timesheet will go for approval and can't be edited.</span>
+      </div>
+      <!-- <button mat-raised-button class="mat-flat-button mat-primary " (click)="captureScreen()" [disabled]="isDisabled">
+        <span>Confirm</span>
+      </button> -->
+
+      <div mat-dialog-actions class="subTaskDialogBoxAction">
+        <button mat-flat-button class="cancelUpdateButton" (click)="captureScreen()" [disabled]="isDisabled">
+            <span>Submit</span>
+          </button>
+      <!-- <button mat-flat-button class="cancelUpdateButton" (click)="captureScreen()">Confirm</button> -->
+    </div>
+
+     
+    </div>
+       
+    </div>
+</div>

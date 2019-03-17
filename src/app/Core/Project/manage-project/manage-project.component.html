@@ -1,0 +1,91 @@
+<div class="middle-header">
+  <span class="fontRegular">Manage Project</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/">Home</a> /
+    <span class="bdActive">Manage Project</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="row">
+    <h2 class="headerTwo">Projects</h2>
+    <div class="tableWrapper policyTableWrapper">
+      <div class="actionBtnSec">
+        <button mat-raised-button class="commonBtnClass aAddBtn active" (click)="addProject()">
+          <i class="tiny material-icons">add</i>
+          <span>Add Project</span>
+        </button>
+
+        <button mat-raised-button class="commonBtnClass aDeleteBtn" [disabled]="!deleteButton()" [class.active]="deleteButton()"
+          (click)="deleteProjectPopup()">
+          <i class="tiny material-icons">delete</i>
+          <span>Delete Project</span>
+        </button>
+        <div class="buttonDropDownMain">
+          <button mat-raised-button class="commonBtnClass aAddBtn aEditBtn dropBtn" [disabled]="!editButton()" [class.active]="editButton()"
+            (click)="options('toggle')" (blur)="options('hide')">
+            <i class="tiny material-icons">edit</i>
+            <span>More Actions</span>
+            <i class="tiny material-icons">arrow_drop_down</i>
+          </button>
+          <ul class="buttonDropDown" [class.showDropMenu]="showDropMenu">
+            <li (click)="modifyProjectND()"> Modify Name/Description</li>
+            <li (click)="modifyProjectUser()">Add/Remove Users</li>
+            <li (click)="modifyProjectTask()">Add Task</li>
+            <li (click)="modifyProjectstTask()">Add SubTask</li>
+          </ul>
+        </div>
+      </div>
+      <div class="greenMsgWithRibbon" [hidden]="CommonUtilService.greenMsgRibbonIsHidden">{{CommonUtilService.successMsgGreen}}
+        <i class="material-icons msgIAMClose" (click)="CommonUtilService.greenMsgRibbonIsHidden = true">close</i>
+      </div>
+      <div class="clear">&nbsp;</div>
+
+      <div class="table-wrapper iamcommonTableclass">
+        <div class="tableWrapperMain">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8 checkBoxTable">
+          <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
+            <mat-cell *matCellDef="let project">
+              <mat-checkbox (change)="onChange($event, project)">
+              </mat-checkbox>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Project Name </mat-header-cell>
+            <mat-cell *matCellDef="let project">
+              <a (click)="projectDetail(project)">{{project.name}} </a>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+            <mat-cell *matCellDef="let project"> {{project.description}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let project; columns: displayedColumns;">
+          </mat-row>
+        </mat-table>
+        </div>
+      </div>
+    </div>
+    <!-- table end -->
+  </div>
+</div>
+<div class="welcomePopSection">
+  <div [hidden]="isPopupHidden" id="popup1" class="overlay deleteOverlay">
+    <div class="popup wow Ownpulse deletePopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+      <a id="closebtn" class="material-icons msgClose" (click)="deleteProjectPopup()">close</a>
+      <div class="content">
+        <p class="popupSuccessMsg">Are you sure you want to delete the Project/Projects?</p>
+
+        <i class="material-icons deleteCrossIco">priority_high</i>
+        <div class="matListMain popUpBtnDv">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="deleteProjectPopup()">Cancel</button>
+          <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="deleteProject()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
