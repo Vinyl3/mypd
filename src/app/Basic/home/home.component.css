@@ -1,0 +1,5 @@
+@import "../../../assets/CSS/slidePage.css";
+@import "../../../assets/CSS/page-animation.css";
+.homeMenu{
+    min-height: auto;
+}

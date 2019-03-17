@@ -1,0 +1,263 @@
+<div class="dashboard_page">
+  <div class="left_panel">
+    <div class="open-menu ">
+      <mat-drawer-container class="leftNavigation-container" autosize>
+        <mat-drawer #drawer class="example-sidenav" mode="side">
+          <a routerLink="/">
+            <div class="dashboardLogoMain" [style.width]="logoRightWith ? '40px' : '213px'">
+              <img alt="" src="assets/Images/dashboardLogo.png" />
+            </div>
+          </a>
+          <div class="clearFix"></div>
+
+
+          <div class="side-middle-header text-center icon">
+            <div ng-sidebar-content class="menuIconMainDiv">
+              <button class="menuIconDiv" (click)="drawertoggle()" mat-raised-button [class.addIconClass]="vDropList"></button>
+            </div>
+          </div>
+          <div class="clearFix"></div>
+
+          <div class="leftPanelMain">
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header [collapsedHeight]="customCollapsedHeight" [expandedHeight]="customExpandedHeight">
+                  <mat-panel-title>
+                    <a class="pointsArrow" [matTooltip]="vProjectM" [matTooltipPosition]="position.value">
+                      <span class="leftIconCommon projectmanagementIcon"></span>
+                    </a>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <a *ngIf="showFiller" class="PointsText">Project Management</a>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <a routerLink="/project/ManageProject" class="sidePanlSubIcon" [class.subIconPadding]="vDropList" [class.highLightSubMenu]="isActiveMenu('project')">
+                  <span [matTooltip]="vCreateProject" [matTooltipPosition]="position.value" class="leftIconCommon createProjectIcon"></span>
+                  <span *ngIf="showFiller" class="subPoints">Create a Project</span>
+                </a>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header [collapsedHeight]="customCollapsedHeight" [expandedHeight]="customExpandedHeight">
+                  <mat-panel-title>
+                    <a class="pointsArrow" [matTooltip]="vsheetM" [matTooltipPosition]="position.value">
+                      <span class="leftIconCommon sheetManagementicon"></span>
+                    </a>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <a *ngIf="showFiller" class="PointsText">Sheet Management</a>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <a class="sidePanlSubIcon" [class.subIconPadding]="vDropList">
+                  <span [matTooltip]="vTemplates" [matTooltipPosition]="position.value" class="leftIconCommon templatesIconMenu"></span>
+                  <span *ngIf="showFiller" class="subPoints">Templates</span>
+                </a>
+              </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header [collapsedHeight]="customCollapsedHeight" [expandedHeight]="customExpandedHeight">
+                  <mat-panel-title>
+                    <a class="pointsArrow" [matTooltip]="vDashboard" [matTooltipPosition]="position.value">
+                      <span class="leftIconCommon dashboarBbIcon"></span>
+                    </a>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <a *ngIf="showFiller" class="PointsText">Dashboard</a>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <a routerLink="/" class="sidePanlSubIcon" [class.subIconPadding]="vDropList" [class.highLightSubMenu]="isActiveMenu('dashboard')">
+                  <span [matTooltip]="vCreateDashboard" [matTooltipPosition]="position.value" class="leftIconCommon createDashboardIcon"></span>
+                  <span *ngIf="showFiller" class="subPoints">Create Dashboard </span>
+                </a>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header [collapsedHeight]="customCollapsedHeight" [expandedHeight]="customExpandedHeight">
+                  <mat-panel-title>
+                    <a class="pointsArrow" [matTooltip]="vTimeSheet" [matTooltipPosition]="position.value">
+                      <span class="leftIconCommon timeSheetMIcon"></span>
+                    </a>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <a *ngIf="showFiller" class="PointsText">Timesheet</a>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <a routerLink="/Timesheet/ManageTimesheet" class="sidePanlSubIcon timeSheetSubIcon" [class.subIconPadding]="vDropList" [class.highLightSubMenu]="isActiveMenu('timesheet')">
+                  <span [matTooltip]="vTimeSheet" [matTooltipPosition]="position.value" class="leftIconCommon timeSheetIcon"></span>
+                  <span *ngIf="showFiller" class="subPoints">Timesheet</span>
+                </a>
+                
+                  <a (click)="reviewTimesheet()" class="sidePanlSubIcon reviewTimeSheetSubIcon" [class.subIconPaddingIAM]="vDropList" [class.highLightSubMenu]="isActiveMenu('reviewtimesheet')">
+                    <span [matTooltip]="rvTimeSheet" [matTooltipPosition]="position.value" class="leftIconCommon reviewTimeSheetIcon"></span>
+                    <span *ngIf="showFiller" class="subPoints">Review Timesheet</span>
+                  </a>
+
+                  <a routerLink="/Timesheet/MyTimesheet" class="sidePanlSubIcon" [class.subIconPaddingIAM]="vDropList" [class.highLightSubMenu]="isActiveMenu('mytimesheet')">
+                    <span [matTooltip]="myTimeSheet" [matTooltipPosition]="position.value" class="leftIconCommon myTimesheetIcon"></span>
+                    <span *ngIf="showFiller" class="subPoints">My Timesheet</span>
+                  </a>
+              </mat-expansion-panel>
+
+              <mat-expansion-panel>
+                <mat-expansion-panel-header [collapsedHeight]="customCollapsedHeight" [expandedHeight]="customExpandedHeight" [class.highLightSubMenu]="isActiveMenu('iamDashboard')">
+                  <mat-panel-title>
+                    <a class="pointsArrow" [matTooltip]="viam" [matTooltipPosition]="position.value" (click)="manageIAM('/IAM')">
+                      <span class="leftIconCommon iamIcon"></span>
+                    </a>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    <a (click)="manageIAM('/IAM')" *ngIf="showFiller" class="PointsText">IAM</a>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                  <a (click)="manageIAM('/IAM/ManageUser')" class="sidePanlSubIcon userMSubIcon" [class.subIconPaddingIAM]="vDropList" [class.highLightSubMenu]="isActiveMenu('user')">
+                    <span [matTooltip]="vUser" [matTooltipPosition]="position.value" class="leftIconCommon userMIcon"></span>
+                    <span *ngIf="showFiller" class="subPoints">User</span>
+                  </a>
+                  
+                  <a (click)="manageIAM('/IAM/ManageGroup')" class="sidePanlSubIcon groupMSubIcon" [class.subIconPaddingIAM]="vDropList" [class.highLightSubMenu]="isActiveMenu('group')">
+                    <span [matTooltip]="vGroup" [matTooltipPosition]="position.value" class="leftIconCommon groupMIcon"></span>
+                    <span *ngIf="showFiller" class="subPoints">Group</span>
+                  </a>
+                  
+                  <a (click)="manageIAM('/IAM/ManageRole')" class="sidePanlSubIcon roleMSubIcon" [class.subIconPaddingIAM]="vDropList" [class.highLightSubMenu]="isActiveMenu('role')">
+                    <span [matTooltip]="vRole" [matTooltipPosition]="position.value" class="leftIconCommon roleMIcon"></span>
+                    <span *ngIf="showFiller" class="subPoints">Role</span>
+                  </a>
+                  
+                  <a (click)="manageIAM('/IAM/ManagePolicy')" class="sidePanlSubIcon" [class.subIconPaddingIAM]="vDropList" [class.highLightSubMenu]="isActiveMenu('policy')">
+                    <span [matTooltip]="vPolicy" [matTooltipPosition]="position.value" class="leftIconCommon policyMIcon"></span>
+                    <span *ngIf="showFiller" class="subPoints">Policy</span>
+                  </a>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+
+        </mat-drawer>
+
+        <div class="right_panel" [class.slideRightClass]="vRightPannel">
+          <nav class="navbar navbar-default">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <!-- <div class="navbar-form navbar-left dsSearchMain">
+                <input type="text" name="search" placeholder="">
+                <span class="dashSearchIcon"></span>
+              </div> -->
+            </div>
+            <div class="collapse navbar-collapse dashbordRightMenu" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <!-- <li>
+                  <a routerLink="/">
+                    <span class="headerIconCommon notificationIcon"></span>
+                    <span class="badge badge-notify">3</span>
+                    <span class="rightMenuText">Notification </span>
+                  </a>
+                </li> -->
+                <!-- <li>
+                  <a routerLink="/">
+                    <span class="headerIconCommon dbReportIcon"></span>
+                    <span class="rightMenuText">Report </span>
+                  </a>
+                </li> -->
+                <li>
+                  <a routerLink="/IAM/AddUser">
+                    <span class="joinOtherIcon"></span> Invite Other to Join
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/">
+                    <span class="dashBIcoCommon dashBHelpIcon"></span>
+                    <span class="rightMenuText">Help </span>
+                  </a>
+                </li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img alt="" class="" src="assets/Images/profile_pic.png" />
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="companyDltsMain" *ngFor="let company of companyList" (click)="onCompanySelect(company)">
+                      <span class="companyIconMain"><img alt="" src="assets/Images/innerLogo.png" /></span>
+                      <span class="companyName">{{company.name!=null?company.name:company.creatorEmail}} </span>
+                      <!-- <span class="companyDescrip">adasdasdas</span> -->
+                    </li>
+                    <li class="lihalfWidth">
+                      <!-- <span class="dashBIcoCommon dashBMyProIcon"></span> -->
+                      <a routerLink="/">My Profile</a>
+                    </li>
+                    <li class="lihalfWidth">
+                      <!-- <span class="dashBIcoCommon dashBLogIcon"></span> -->
+                      <a routerLink="/" (click)="logout()"> Logout</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+          </nav>
+
+          <div class="page_content">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+
+      </mat-drawer-container>
+      <!--  -->
+    </div>
+    <div class="clearFixed"></div>
+    <div class="container-fluid footerSec">
+      <ul>
+        <li>
+          <a routerLink="/">Product</a>
+        </li>
+        <li>
+          <a routerLink="/">Pricing</a>
+        </li>
+        <li>
+          <a routerLink="/">Learn More</a>
+        </li>
+        <li>
+          <a routerLink="/">Go to Project Desk Button</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<!-- Left Panel  -->
+<div class="welcomePopSection">
+  <div [hidden]=CommonUtilService.isWelcomePopUpHidden id="popup1" class="overlay">
+    <div class="popup wow Ownpulse" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+      <a id="closebtn" class="material-icons msgClose" (click)="popupHide()">close</a>
+      <div class="content">
+        <h2>Hi {{firstName}}</h2>
+        <p>Welcome to Project Desk</p>
+        <button mat-flat-button class="mat-flat-button mat-primary" (click)="popupHide()">Get Started</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--  -->
+
+<div class="welcomePopSection accessDeniedPop">
+  <div [hidden]="CommonUtilService.accessDeniedPop" id="popup1" class="overlay deleteOverlay">
+    <div class="popup wow Ownpulse deletePopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+      <a id="closebtn" class="material-icons msgClose" (click)="accessDeniedClose()">close</a>
+      <div class="content">
+        <p class="popupSuccessMsg">Sorry ! You are not authorized to perform this action</p>
+        <i class="material-icons deleteCrossIco">priority_high</i>
+        <div class="matListMain popUpBtnDv">
+         
+          <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="accessDeniedClose()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

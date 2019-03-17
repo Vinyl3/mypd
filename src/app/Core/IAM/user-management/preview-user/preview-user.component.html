@@ -1,0 +1,105 @@
+
+    <div class="middle-header">
+      <span class="fontRegular">Add User</span>
+        <span class="dashBDcrumbs"><a routerLink="/IAM">Home</a> / <a routerLink="/IAM/ManageUser">Manage User</a> / <span class="bdActive">Add User</span>
+      </span>
+    </div>
+    <div class="right_panel_content">  
+        <h1 class="headerTwo formHeader formHeaderLeft previewHeading">Preview User</h1>     
+        <div class="tableWrapper stepWrapper previewBreadcrumb">
+          <div class="breadcrumbSec">
+            <div class="stepAll stepMostLeft">
+              <div class="starIconDiv breadcrumbActive"></div>
+              <div class="clear"></div>
+            <span class="breadcrumbText">User Email</span>
+            </div>
+            <div class="stepAll stepCenter">
+              <div class="starIconDiv breadcrumbActive"></div>
+              <div class="clear"></div>
+              <div class="breadcrumbText"> Attach Permission</div>
+            </div>
+            <div class="stepAll stepRight">
+              <div class="starIconDiv breadcrumbActive"></div>
+              <div class="clear"></div>
+              <div class="breadcrumbText">Preview User </div>
+            </div>
+          </div>
+        </div>
+
+
+        
+
+        <div class="tableWrapper plolicyTableWrapper previewWrapper">
+          <div class="previewDv">
+            <div class="userNameEmailWrapper uerDltsNotEdit">
+              <div class="previewuserName" [hidden]="!UserEmailName">
+                  <div class="previewLeft">User Email</div>
+                  <div class="previewRight">{{user.email.userEmail}}</div>
+              </div>
+              
+              <div class="clear"></div>
+              <div class="previewuserName" [hidden]="UserEmailName">
+                <div class="previewLeft">User Email</div>
+                <div class="previewRight">{{user.email}}</div>
+              </div>
+             
+           
+              <div class="previewuserEmail">
+                <div class="previewLeft">Message</div>
+                <div class="previewRight">{{user.mssg}}</div>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <div class="clear"></div>
+
+
+
+              
+              <div class="previewUserAndDltsTab previewTBCommon">
+                  <tabset>
+                      <tab>
+                        <span *tabHeading class="tabClass" (click)="permissionType('group')">
+                            Attached {{permission}}
+                        </span>
+                  <div class="previewUserSec">
+                    <div class="previewTbscroll">
+                      <div class="tableWrapperMain">
+                      <mat-table [dataSource]="dataSource" class="previewTable">
+                          <!-- Name Column -->
+                          <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef> {{permission}} Name </mat-header-cell>
+                            <mat-cell *matCellDef="let user"> {{user.name}} </mat-cell>
+                          </ng-container>
+                        
+                          <!-- Weight Column -->
+                          <ng-container matColumnDef="description">
+                            <mat-header-cell *matHeaderCellDef> {{permission}} Description </mat-header-cell>
+                            <mat-cell *matCellDef="let user"> {{user.description}} </mat-cell>
+                          </ng-container> 
+                        
+                          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+                        </div>
+                      </div>
+                  </div>
+                  </tab>
+                </tabset>
+              </div>
+
+
+
+
+              <div class="clear"></div>
+          </div>
+          <div class="clear"></div>
+          <div class="matListMain iAMAddFormBtnDv previewBtnDv"> 
+              <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="backClicked()">Back</button>
+              <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManageUser">Cancel</button>
+              <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="createUser()">Add User</button>
+          </div>
+          <div class="clear"></div>
+     
+      </div>
+    </div>
+   

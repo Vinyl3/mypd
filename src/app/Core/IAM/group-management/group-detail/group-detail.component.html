@@ -1,0 +1,161 @@
+<div class="middle-header">
+  <span class="fontRegular">Group Detail</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/IAM">Home</a> /
+    <a routerLink="/IAM/ManageGroup">Manage Group</a> /
+    <span class="bdActive">Group Detail</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="tableWrapper plolicyTableWrapper previewWrapper">
+
+   
+      <div class="previewDv">
+        <div class="userNameEmailWrapper">
+          
+          <div class="previewuserName">
+            <div class=" previewLeft">Name</div>
+            <div class=" previewRight">{{group.name}}</div>
+          </div>
+         
+       
+          <div class="previewuserEmail">
+            <div class=" previewLeft">Description</div>
+            <div class=" previewRight">{{group.description}}</div>
+          </div>
+            <button class="editNameAndemail" mat-raised-button (click)="modifyGroupND()">Edit</button>
+          
+          <div class="clear"></div>
+        </div>
+        <div>
+          <tabset>
+            <tab>
+              <span *tabHeading class="tabClass" (click)="permissionType('Role')">
+                Attached Roles
+              </span>
+
+
+              <div class="groupDltsSec">
+                <div class="previewTbscroll">
+                  
+                  <div class="tableWrapperMain">
+                  <mat-table [dataSource]="dataSource" class="previewTable">
+                    <ng-container matColumnDef="name">
+                      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                      <mat-cell *matCellDef="let group"> {{group.name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="description">
+                      <mat-header-cell *matHeaderCellDef>Description </mat-header-cell>
+                      <mat-cell *matCellDef="let group">{{ group.description}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="delete">
+                      <mat-header-cell *matHeaderCellDef> <button class="previewAddBtn " mat-raised-button (click)="modifyGroupPermission('Role')">Add</button> </mat-header-cell>
+                      <mat-cell *matCellDef="let group">
+                        <mat-icon (click)="removeFromGroupPopup('Role',group.id)">delete_outline</mat-icon>
+                      </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                  </mat-table>
+                  </div>
+                </div>
+              </div>
+            </tab>
+            <tab>
+              <span *tabHeading class="tabClass" (click)="permissionType('Policy')">
+                Attached Policies
+              </span>
+
+
+              <div class="groupDltsSec">
+                <div class="previewTbscroll">
+                  
+                  <div class="tableWrapperMain">
+                  <mat-table [dataSource]="dataSource" class="previewTable">
+                    <ng-container matColumnDef="name">
+                      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                      <mat-cell *matCellDef="let group"> {{group.name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="description">
+                      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+                      <mat-cell *matCellDef="let group">{{ group.description}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="delete">
+                      <mat-header-cell *matHeaderCellDef> <button class="previewAddBtn " mat-raised-button (click)="modifyGroupPermission('Policy')">Add</button> </mat-header-cell>
+                      <mat-cell *matCellDef="let group">
+                        <mat-icon (click)="removeFromGroupPopup('Policy',group.id)">delete_outline</mat-icon>
+                      </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                  </mat-table>
+                  </div>
+                </div>
+              </div>
+            </tab>
+            <tab>
+              <span *tabHeading class="tabClass" (click)="permissionType('User')">
+                Attached Users
+              </span>
+
+              <div class="groupDltsSec">
+                <div class="previewTbscroll">
+                  
+                  <div class="tableWrapperMain">
+                  <mat-table [dataSource]="dataSource" class="previewTable">
+                    <ng-container matColumnDef="name">
+                      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                      <mat-cell *matCellDef="let group"> {{group.firstName}} {{group.lastName}}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="description">
+                      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+                      <mat-cell *matCellDef="let group">{{group.userEmail}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="delete">
+                      <mat-header-cell *matHeaderCellDef> <button class="previewAddBtn " mat-raised-button (click)="modifyGroupUser()">Add</button> </mat-header-cell>
+                      <mat-cell *matCellDef="let group">
+                        <mat-icon (click)="removeFromGroupPopup('User',group.id)">delete_outline</mat-icon>
+                      </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                  </mat-table>
+                  </div>
+                </div>
+              </div>
+            </tab>
+          </tabset>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+  
+    <div class="matListMain iAMAddFormBtnDv previewBtnDv">
+        <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="backClicked()">Back</button>
+      </div>
+  </div>
+</div>
+<div class="welcomePopSection">
+  <div [hidden]="removeFGroupPopup" id="popup1" class="overlay deleteOverlay">
+    <div class="popup wow Ownpulse deletePopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+      <a id="closebtn" class="material-icons msgClose" (click)="closeGroupPopup()">close</a>
+      <div class="content">
+        <p class="popupSuccessMsg">Are you sure you want to delete {{tabType}} from Groups?</p>
+        <i class="material-icons deleteCrossIco">priority_high</i>
+        <div class="matListMain popUpBtnDv">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="closeGroupPopup()">Cancel</button>
+          <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="removePrivilege()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

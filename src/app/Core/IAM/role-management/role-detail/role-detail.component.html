@@ -1,0 +1,94 @@
+<div class="middle-header">
+  <span class="fontRegular">Role Detail</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/IAM">Home</a> /
+    <a routerLink="/IAM/ManageRole">Manage Role</a> /
+    <span class="bdActive">Role Detail</span>
+  </span>
+</div>
+
+<div class="right_panel_content">
+              <div class="clear">&nbsp;</div>
+  <div class="tableWrapper plolicyTableWrapper previewWrapper">
+      
+
+      <div class="previewDv">
+          <div class="userNameEmailWrapper">
+       
+        <div class="previewuserName">
+          <div class="previewLeft">Name</div>
+          <div class="previewRight">{{role.name}}</div>
+        </div>
+        
+        <div class="previewuserEmail">
+          <div class="previewLeft">Description</div>
+          <div class="previewRight">{{role.description}}</div>
+        </div>
+        
+        <button class="editNameAndemail" mat-raised-button (click)="modifyRoleND()">Edit</button>
+        <div class="clear"></div>
+          </div>
+        <div class="previewRoleAndDltsTab">
+          <tabset>
+            <tab>
+              <span *tabHeading class="tabClass">
+                Attached Policy
+              </span>
+
+
+              <div class="roleDltsSec">
+                <div class="previewTbscroll">
+                   
+                    <div class="tableWrapperMain">
+                  <mat-table [dataSource]="dataSource" class="previewTable">
+                    <ng-container matColumnDef="name">
+                      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                      <mat-cell *matCellDef="let policy"> {{policy.name}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="description">
+                      <mat-header-cell *matHeaderCellDef>Description </mat-header-cell>
+                      <mat-cell *matCellDef="let policy">{{ policy.description}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="delete">
+                      <mat-header-cell *matHeaderCellDef>  <button class="previewAddBtn " mat-raised-button (click)="modifyRoleComponents()">Add</button> </mat-header-cell>
+                      <mat-cell *matCellDef="let policy"><mat-icon (click)="removePolicyFromRolePopUp(policy.id)">delete_outline</mat-icon></mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                  </mat-table>
+                  </div>
+                </div>
+              </div>
+            </tab>
+
+          </tabset>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+  
+ 
+    <div class="matListMain iAMAddFormBtnDv previewBtnDv">
+        <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="backClicked()">Back</button>
+      </div>
+  </div>
+</div>
+<div class="welcomePopSection">
+      <div [hidden]= "isPopupHidden" id="popup1" class="overlay deleteOverlay">
+        <div class="popup wow Ownpulse deletePopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+          <a id="closebtn" class="material-icons msgClose" (click)="closeRolePopUp()">close</a>
+          <div class="content">        
+            <p class="popupSuccessMsg">Are you sure you want to delete this policy?</p>
+            
+            <i class="material-icons deleteCrossIco">priority_high</i>
+            <div class="matListMain popUpBtnDv"> 
+              <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="closeRolePopUp()">Cancel</button>
+              <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="removePolicyFromRole()">Yes</button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>

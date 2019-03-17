@@ -1,0 +1,111 @@
+<div class="middle-header">
+  <span class="fontRegular">IAM Dashboard</span>
+    <span class="dashBDcrumbs"><a routerLink="/IAM">Home</a> / <span class="bdActive">IAM</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="row"> 
+    <div class="iamDashboardSec">
+    <div class="iamcomponentMain"> 
+      <h2 class="headerTwo">Welcome to Identity and Access Management</h2>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      </p>
+      <hr class="commonHr bottomHr"/>
+    </div>
+    <h2 class="headerTwo">IAM Components</h2>
+
+    <div class="iamComponentMain">
+    <a routerLink="ManageUser" class="userGroupCommon iamDashboardUser"><span>{{userCount}}</span> User</a>
+    <a routerLink="ManageGroup" class="userGroupCommon iamDashboardGroup"><span>{{groupCount}}</span> Group</a>
+    <a routerLink="ManageRole" class="userGroupCommon iamDashboardRole"><span>{{roleCount}}</span> Role</a>            
+    <a routerLink="ManagePolicy" class="userGroupCommon iamDashboardPolicy"><span>{{policyCount}}</span> Policy</a>
+    </div>
+
+    <div class="clear"></div>
+    <hr class="commonHr bottomHr"/> 
+    <h2 class="headerTwo">Status</h2>  
+    <div class="tableWrapper">
+        
+    <mat-accordion class="statusWrapper">
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="checkPanel" #selectAction1>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+          <div class="iamDashbordnotActive"><i class="material-icons">priority_high</i></div> 
+          <span class="statusTextDiv">Active MFA on your account </span>
+          <mat-icon *ngIf="!selectAction1.expanded" class="matAccordionPlusMinus">add</mat-icon>
+          <mat-icon *ngIf="selectAction1.expanded" class="matAccordionPlusMinus">remove</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+          
+        <mat-radio-group>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        </mat-radio-group>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="checkPanel" #selectAction2>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div *ngIf="userCount == 1" class="iamDashbordnotActive"> <i class="material-icons">priority_high</i> </div>
+            <div *ngIf="userCount > 1" class="iamDashbordnotActive iamDashbordActive"><i class="material-icons">done</i></div>
+            <span class="statusTextDiv">  Add users to your Company</span>
+            <mat-icon *ngIf="!selectAction2.expanded" class="matAccordionPlusMinus">add</mat-icon>
+            <mat-icon *ngIf="selectAction2.expanded" class="matAccordionPlusMinus">remove</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-radio-group>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        </mat-radio-group>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="checkPanel" #selectAction3>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div *ngIf="groupCount == 0" class="iamDashbordnotActive"> <i class="material-icons">priority_high</i> </div>
+            <div *ngIf="groupCount > 0" class="iamDashbordnotActive iamDashbordActive"><i class="material-icons">done</i></div>
+            <span class="statusTextDiv">Create Groups for your Company</span>  
+            <mat-icon *ngIf="!selectAction3.expanded" class="matAccordionPlusMinus">add</mat-icon>
+            <mat-icon *ngIf="selectAction3.expanded" class="matAccordionPlusMinus">remove</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-radio-group>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        </mat-radio-group>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="checkPanel" #selectAction4>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div *ngIf="roleCount == 0" class="iamDashbordnotActive"> <i class="material-icons">priority_high</i> </div>
+            <div *ngIf="roleCount > 0" class="iamDashbordnotActive iamDashbordActive"><i class="material-icons">done</i></div>
+            <span class="statusTextDiv"> Create Roles for your Company </span>
+            <mat-icon *ngIf="!selectAction4.expanded" class="matAccordionPlusMinus">add</mat-icon>
+            <mat-icon *ngIf="selectAction4.expanded" class="matAccordionPlusMinus">remove</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-radio-group>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took galley of type and scrambled it to make a type specimen book.</p>
+        </mat-radio-group>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="checkPanel" #selectAction5>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div *ngIf="policyCount == 0" class="iamDashbordnotActive"> <i class="material-icons">priority_high</i> </div>
+            <div *ngIf="policyCount > 0" class="iamDashbordnotActive iamDashbordActive"><i class="material-icons">done</i></div>
+            <span class="statusTextDiv">  Create Policy for your Company </span>
+            <mat-icon *ngIf="!selectAction5.expanded" class="matAccordionPlusMinus">add</mat-icon>
+            <mat-icon *ngIf="selectAction5.expanded" class="matAccordionPlusMinus">remove</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-radio-group>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took galley of type and scrambled it to make a type specimen book.</p>
+        </mat-radio-group>
+      </mat-expansion-panel>
+    </mat-accordion>
+    </div>
+    </div>
+    <!-- table end -->
+  </div>
+</div>

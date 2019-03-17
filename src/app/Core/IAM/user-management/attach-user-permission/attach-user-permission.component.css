@@ -1,0 +1,37 @@
+.previewBtnDv{
+    padding: 15px 20px;
+}
+.permissionWrapper{
+    width: auto;
+    
+}
+a{
+    text-decoration: none;
+}
+.permissionWrapper .attachBox{
+    float: left;
+    height: auto;
+    background: #fff;
+    color: #333333;
+    box-shadow: 4px 11px 11px -11px #ddd;
+    border-radius: 2px;
+    margin: 20px 20px 20px 0!important;
+    box-shadow: 0px 0px 7px 2px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+.permissionWrapper .active{
+    background: #75b048;
+   
+}
+.permissionWrapper .active span{
+    color: #fff;
+}
+.permissionWrapper p span{
+    color: #333;
+}
+.permissionWrapper p img{
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 10px;
+}

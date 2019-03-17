@@ -1,0 +1,123 @@
+<div class="middle-header">
+  <span class="fontRegular">Add Group</span>
+  <span class="dashBDcrumbs"><a routerLink="/IAM">Home</a> / <a routerLink="/IAM/ManageGroup">Manage Group</a> / <span
+      class="bdActive">Add Group</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <h1 class="headerTwo formHeader formHeaderLeft previewHeading">Preview Group</h1>
+  <div class="tableWrapper stepWrapper previewBreadcrumb">
+    <div class="breadcrumbSec">
+      <div class="stepAll stepMostLeft">
+        <div class="starIconDiv breadcrumbActive"></div>
+        <div class="clear"></div>
+        <span class="breadcrumbText">Group Name</span>
+      </div>
+      <div class="stepAll stepCenter">
+        <div class="starIconDiv breadcrumbActive"></div>
+        <div class="clear"></div>
+        <div class="breadcrumbText"> Attach Permissions</div>
+      </div>
+      <div class="stepAll stepCenter">
+        <div class="starIconDiv breadcrumbActive"></div>
+        <div class="clear"></div>
+        <div class="breadcrumbText"> Attach User</div>
+      </div>
+      <div class="stepAll stepRight">
+        <div class="starIconDiv breadcrumbActive"></div>
+        <div class="clear"></div>
+        <div class="breadcrumbText">Preview Group </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="tableWrapper plolicyTableWrapper previewWrapper">
+      <div class="previewDv">
+
+        <div class="userNameEmailWrapper uerDltsNotEdit">
+          <div class="previewuserName">
+            <div class="previewLeft">Group Name</div>
+            <div class="previewRight">{{group.name}}</div>
+          </div>
+         
+       
+          <div class="previewuserEmail">
+            <div class="previewLeft">Group Description</div>
+            <div class="previewRight">{{group.desc}}</div>
+          </div>
+          <div class="clear"></div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="plolicyTableWrapper">
+          <div class="previewDv">
+            <div class="previewGropTab previewTBCommon">
+              <tabset>
+                <tab>
+                  <span *tabHeading class="tabClass" (click)="permissionType('group')">
+                    Attached {{permission}}(s)
+                  </span>
+                  <div class="groupPreviewSec">
+                    <div class="previewTbscroll">
+                      <div class="tableWrapperMain">
+                      <mat-table [dataSource]="dataSource" class="previewTable">
+                        <ng-container matColumnDef="name">
+                          <mat-header-cell *matHeaderCellDef> {{permissionName}} Name </mat-header-cell>
+                          <mat-cell *matCellDef="let role"> {{role.name}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="description">
+                          <mat-header-cell *matHeaderCellDef> {{permissionName}} Description </mat-header-cell>
+                          <mat-cell *matCellDef="let role"> {{role.description}} </mat-cell>
+                        </ng-container>
+
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                      </mat-table>
+                      </div>
+                    </div>
+                  </div>
+                </tab>
+
+                <tab>
+                  <span *tabHeading class="tabClass" (click)="permissionType('group')">
+                    Attached User(s)
+                  </span>
+                  <div class="groupPreviewSec">
+                    <div class="previewTbscroll">
+                      <div class="tableWrapperMain">
+                      <mat-table [dataSource]="dataSource1" class="previewTable">
+                        <ng-container matColumnDef="firstName">
+                          <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+                          <mat-cell *matCellDef="let user"> {{user.firstName}} {{user.lastName}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="userEmail">
+                          <mat-header-cell *matHeaderCellDef> User Description </mat-header-cell>
+                          <mat-cell *matCellDef="let user"> {{user.userEmail}} </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+                        <mat-row *matRowDef="let user; columns: displayedColumns1;"></mat-row>
+                      </mat-table>
+                      </div>
+                    </div>
+                  </div>
+                </tab>
+              </tabset>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    
+    <div class="matListMain iAMAddFormBtnDv previewBtnDv">
+      <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="backClicked()">Back</button>
+      <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManageGroup">Cancel</button>
+      <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="createGroup()">Create Group</button>
+    </div>
+  </div>
+</div>

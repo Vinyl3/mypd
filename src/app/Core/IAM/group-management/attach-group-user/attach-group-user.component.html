@@ -1,0 +1,82 @@
+<div class="middle-header">
+  <span class="fontRegular">{{actionName}} Group</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/IAM">Home</a> /
+    <a routerLink="/IAM/ManageGroup">Manage Group</a> /
+    <span class="bdActive">{{actionName}} Group</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="row">
+    <div class="tableWrapper stepWrapper">
+      <div class="breadcrumbSec">
+        <div class="stepAll stepMostLeft">
+          <div class="starIconDiv breadcrumbActive"></div>
+          <div class="clear"></div>
+          <span class="breadcrumbText">Group Name</span>
+        </div>
+        <div class="stepAll stepCenter">
+          <div class="starIconDiv breadcrumbActive"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText"> Attach Permissions</div>
+        </div>
+        <div class="stepAll stepCenter">
+          <div class="starIconDiv breadcrumbActive"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText"> Attach User</div>
+        </div>
+        <div class="stepAll stepRight">
+          <div class="starIconDiv"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText">Preview Group </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clear">&nbsp;</div>
+    <h2 class="headerTwo">Attach User</h2>
+
+    <div class="table-wrapper tableWrapper policyTableWrapper">
+      <div class="iamcommonTableclass">
+        <div class="tableWrapperMain">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8 checkBoxTable">
+          <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
+            <mat-cell *matCellDef="let user">
+              <mat-checkbox (change)="onUserChange($event, user)" [checked]="userChecked(user)">
+              </mat-checkbox>
+            </mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="firstName">
+            <mat-header-cell *matHeaderCellDef> User Name</mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.firstName}} {{user.lastName}} </mat-cell>
+          </ng-container>
+
+
+          <!-- Description Column -->
+          <ng-container matColumnDef="userEmail">
+            <mat-header-cell *matHeaderCellDef> User Email </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.userEmail}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let user; columns: displayedColumns;">
+          </mat-row>
+        </mat-table>
+        </div>
+      </div>
+      <div class="matListMain iAMAddFormBtnDv previewBtnDv">
+        <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="backClicked()">Back</button>
+        <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManageGroup">Cancel</button>
+        <button (click)="checkUsers()" mat-flat-button class="cancelUpdateButton activeBtn">{{button}}</button>
+        <div [hidden]="isValidated" class="redMsgCenter">Please select atleast one User</div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+</div>

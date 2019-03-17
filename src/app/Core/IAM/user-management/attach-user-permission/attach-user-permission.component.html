@@ -1,0 +1,109 @@
+<div class="middle-header">
+  <span class="fontRegular">{{actionName}} User</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/IAM">Home</a> /
+    <a routerLink="/IAM/ManageUser">Manage User</a> /
+    <span class="bdActive">{{actionName}} User</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="row">
+    <div class="tableWrapper stepWrapper">
+      <div class="breadcrumbSec">
+        <div class="stepAll stepMostLeft">
+          <div class="starIconDiv breadcrumbActive"></div>
+          <div class="clear"></div>
+          <span class="breadcrumbText">User Email</span>
+        </div>
+        <div class="stepAll stepCenter">
+          <div class="starIconDiv breadcrumbActive"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText"> Attach Permission</div>
+        </div>
+        <div class="stepAll stepRight">
+          <div class="starIconDiv"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText">Preview User Detail </div>
+        </div>
+      </div>
+    </div>
+    <div class="clear">&nbsp;</div>
+    <div [hidden]="actionName=='Edit'">
+    <h2 class="headerTwo">Attach Permission(s)</h2>
+    <div class="clear">&nbsp;</div>
+    <div class="table-wrapper permissionWrapper">
+      <button class="userGroupCommon active" [class.active]="gActive" [disabled]="isDisabled('Group')" (click)="permissionType('Group')">
+        <span class="attachGroupIconOne"> </span>
+        <span>ATTACH GROUP
+          <br> TO USER</span>
+      </button>
+      <button class="userGroupCommon " [class.active]="rActive" [disabled]="isDisabled('Role')" (click)="permissionType('Role')">
+        <span class="attachGroupIconTwo"> </span>
+        <span>ATTACH ROLE
+          <br /> TO USER</span>
+      </button>
+      <button class="userGroupCommon " [class.active]="pActive" [disabled]="isDisabled('Policy')" (click)="permissionType('Policy')">
+        <span class="attachGroupIconThree"> </span>
+        <span>ATTACH POLICY
+          <br /> TO USER</span>
+      </button>
+    </div>
+    </div>
+
+    <div class="clear">&nbsp;</div>
+    <h2 class="headerTwo">Attach {{ permission }}</h2>
+    <div class="table-wrapper tableWrapper policyTableWrapper">
+      <div class="iamcommonTableclass">
+        <div class="tableWrapperMain">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8 checkBoxTable">
+          <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>
+              &nbsp;
+            </mat-header-cell>
+            <mat-cell *matCellDef="let uPermitName">
+              <mat-checkbox (change)="onPermissionChange($event,uPermitName)" [checked]="permissionChecked(uPermitName)">
+              </mat-checkbox>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> {{permission}}  </mat-header-cell>
+            <mat-cell *matCellDef="let uPermitName"> {{uPermitName.name}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef> {{permission}} Description </mat-header-cell>
+            <mat-cell *matCellDef="let uPermitName"> {{uPermitName.description}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let uPermitName; columns: displayedColumns;">
+          </mat-row>
+        </mat-table>
+        </div>
+      </div>
+      <div class="matListMain iAMAddFormBtnDv previewBtnDv">
+        <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="backClicked()">Back</button>
+        <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManageUser">Cancel</button>
+        <button (click)="checkPermissions()" mat-flat-button class="cancelUpdateButton activeBtn">{{button}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="welcomePopSection">
+  <div [hidden]="isPopupHidden" id="popup1" class="overlay deleteOverlay">
+    <div class="popup wow Ownpulse deletePopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+      <a id="closebtn" class="material-icons msgClose" (click)="cancelList()">close</a>
+      <div class="content">
+        <p class="popupSuccessMsg">If you change permission types, the information you entered will be lost.
+          <br />Are you sure?</p>
+
+        <i class="material-icons deleteCrossIco">priority_high</i>
+        <div class="matListMain popUpBtnDv">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="cancelList()">Cancel</button>
+          <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="okList()">Yes </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

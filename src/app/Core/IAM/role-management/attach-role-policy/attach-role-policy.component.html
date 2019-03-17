@@ -1,0 +1,74 @@
+<div class="middle-header">
+  <span class="fontRegular">{{actionName}} Role</span>
+    <span class="dashBDcrumbs"><a routerLink="/IAM">Home</a> / <a routerLink="/IAM/ManageUser">Manage User</a>
+       / <span class="bdActive">{{actionName}} Role</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="row">
+    <div class="tableWrapper stepWrapper">
+      <div class="breadcrumbSec">
+        <div class="stepAll stepMostLeft">
+          <div class="starIconDiv breadcrumbActive"></div>
+          <div class="clear"></div>
+        <span class="breadcrumbText">Role Name</span>
+        </div>
+        <div class="stepAll stepCenter">
+          <div class="starIconDiv breadcrumbActive"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText"> Attach Policies</div>
+        </div>
+        <div class="stepAll stepRight">
+          <div class="starIconDiv"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText">Preview Role </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clear">&nbsp;</div>
+    <h2 class="headerTwo">Attach Policies</h2>
+    <div class="table-wrapper tableWrapper policyTableWrapper">
+      <div class="iamcommonTableclass">
+        <div class="tableWrapperMain">
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8 checkBoxTable">
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <mat-header-cell *matHeaderCellDef>
+            &nbsp;
+          </mat-header-cell>
+          <mat-cell *matCellDef="let policy">
+            <mat-checkbox (change)="onPolicyChange($event, policy)" [checked]="policyChecked(policy)">    
+            </mat-checkbox>
+          </mat-cell>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Policy Name </mat-header-cell>
+          <mat-cell *matCellDef="let policy"> {{policy.name}} </mat-cell>
+        </ng-container>
+      
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef> Policy Description </mat-header-cell>
+          <mat-cell *matCellDef="let policy"> {{policy.description}} </mat-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let policy; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
+      </div>
+      </div>
+      <div class="matListMain iAMAddFormBtnDv previewBtnDv">
+        <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="backClicked()">Back</button>
+        <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManageRole">Cancel</button>
+        <button (click)="checkRolePolicies()" mat-flat-button class="cancelUpdateButton activeBtn">{{button}}</button>
+      </div>
+      <div [hidden]= "isValidated" class="redMsgCenter">Please select a Policy</div>
+    </div>
+  </div>
+</div>
+  

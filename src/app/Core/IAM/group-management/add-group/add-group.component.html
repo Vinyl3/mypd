@@ -1,0 +1,55 @@
+<div class="middle-header">
+  <span class="fontRegular">{{actionName}} Group</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/IAM">Home</a> /
+    <a routerLink="../ManageGroup">Manage Group</a> /
+    <span class="bdActive">{{actionName}} Group</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="row">
+    <div class="tableWrapper stepwhiteWrapper stepWrapper">
+      <div class="breadcrumbSec">
+        <div class="stepAll stepMostLeft">
+          <div class="starIconDiv breadcrumbActive"></div>
+          <div class="clear"></div>
+          <span class="breadcrumbText">Group Name</span>
+        </div>
+        <div class="stepAll stepCenter">
+          <div class="starIconDiv"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText"> Attach Permissions</div>
+        </div>
+        <div class="stepAll stepCenter">
+          <div class="starIconDiv"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText"> Attach User</div>
+        </div>
+        <div class="stepAll stepRight">
+          <div class="starIconDiv"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText">Preview Group </div>
+        </div>
+      </div>
+    </div>
+    <div class="formSection">
+      <h1 class="headerTwo formHeader">Group and Description</h1>
+      <form class="Addform">
+        <div [hidden]="isValid" class="redMsgCenter">Please enter Group Name and Description</div>
+        <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+          <input matInput type="text" placeholder="Group Name" [(ngModel)]="groupName" [ngModelOptions]="{standalone: true}" />
+        </mat-form-field>
+        <div class="clear"></div>
+        <mat-form-field class="example-full-width loginPassMatClass iAMMatClass iAMtextAreaClass">
+          <textarea matInput type="text" placeholder="Description" [(ngModel)]="groupDesc" [ngModelOptions]="{standalone: true}"></textarea>
+        </mat-form-field>
+
+        <div class="matListMain iAMAddFormBtnDv">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManageGroup">Cancel</button>
+          <button (click)="checkGroupND()" mat-flat-button class="cancelUpdateButton activeBtn">{{button}}</button>
+        </div>
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+
+    <div class="middle-header">
+      <span class="fontRegular">{{actionName}} Policy</span>
+        <span class="dashBDcrumbs"><a routerLink="/IAM">Home</a> / <a routerLink="../ManagePolicy">Manage Policy</a> / <span class="bdActive">{{actionName}} Policy</span>
+      </span>
+    </div>
+    <div class="right_panel_content">
+      <div class="row">
+        <div class="tableWrapper stepwhiteWrapper stepWrapper">
+          <div class="breadcrumbSec">
+            <div class="stepAll stepMostLeft">
+              <div class="starIconDiv breadcrumbActive"></div>
+              <div class="clear"></div>
+            <span class="breadcrumbText">Policy Name</span>
+            </div>
+            <div class="stepAll stepCenter">
+              <div class="starIconDiv"></div>
+              <div class="clear"></div>
+              <div class="breadcrumbText"> Attach Components and Actions</div>
+            </div>
+            <div class="stepAll stepRight">
+              <div class="starIconDiv"></div>
+              <div class="clear"></div>
+              <div class="breadcrumbText">Preview Policy </div>
+            </div>
+          </div>
+        </div>
+        <div class="formSection">
+        <h1 class="headerTwo formHeader">Policy and Description</h1>
+          <form class="Addform">
+            <div [hidden]= "isValid" class="redMsgCenter">Please enter Policy Name and Description</div>
+              <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+                <input matInput type="text" placeholder="Policy Name" [(ngModel)]="policyName" [ngModelOptions]="{standalone: true}"/>
+              </mat-form-field>
+            <div class="clear"></div>
+            <mat-form-field class="example-full-width loginPassMatClass iAMMatClass iAMtextAreaClass">
+              <textarea matInput type="text" placeholder="Description" [(ngModel)]="policyDesc" [ngModelOptions]="{standalone: true}"></textarea>
+            </mat-form-field>
+
+            <div class="matListMain iAMAddFormBtnDv">
+              <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManagePolicy">Cancel</button>
+              <button (click)="checkPolicyND()" mat-flat-button class="cancelUpdateButton activeBtn" >{{button}}</button>
+            </div>
+            <div class="clear"></div>
+          </form>
+          </div>
+      </div>
+    </div>
+    

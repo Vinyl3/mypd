@@ -1,0 +1,49 @@
+
+    <div class="middle-header">
+        <span class="fontRegular">{{actionName}}  Role</span>
+          <span class="dashBDcrumbs"><a routerLink="/IAM">Home</a> / <a routerLink="/IAM/ManageRole">Manage Role</a> / <span class="bdActive">{{actionName}}  Role</span>
+        </span>
+      </div>
+      <div class="right_panel_content">
+        <div class="row">  
+          <div class="tableWrapper stepwhiteWrapper stepWrapper">
+            <div class="breadcrumbSec">
+              <div class="stepAll stepMostLeft">
+                <div class="starIconDiv breadcrumbActive"></div>
+                <div class="clear"></div>
+              <span class="breadcrumbText">Role Name</span>
+              </div>
+              <div class="stepAll stepCenter">
+                <div class="starIconDiv"></div>
+                <div class="clear"></div>
+                <div class="breadcrumbText"> Attach Policies</div>
+              </div>
+              <div class="stepAll stepRight">
+                <div class="starIconDiv"></div>
+                <div class="clear"></div>
+                <div class="breadcrumbText">Preview Role </div>
+              </div>
+            </div>
+          </div>
+          <div class="formSection">
+          <h1 class="headerTwo formHeader">Role Name and Description</h1>
+            <form class="Addform">
+              <div [hidden]= "isDataValid" class="redMsgCenter">Please enter Role Name and Description</div>
+                <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+                  <input matInput type="name" placeholder="Role Name" [(ngModel)]="roleName" [ngModelOptions]="{standalone: true}"/>
+                </mat-form-field>            
+              <div class="clear"></div> 
+              <mat-form-field class="example-full-width loginPassMatClass iAMMatClass iAMtextAreaClass">
+                <textarea matInput type="text" placeholder="Description" [(ngModel)]="roleDesc" [ngModelOptions]="{standalone: true}"></textarea>
+              </mat-form-field>
+  
+              <div class="matListMain iAMAddFormBtnDv">
+                  <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManageRole">Cancel</button>
+                  <button (click)="checkRoleND()" mat-flat-button class="cancelUpdateButton activeBtn">{{button}}</button>
+              </div>
+              <div class="clear"></div>
+            </form>
+            </div>
+        </div>
+      </div>
+      

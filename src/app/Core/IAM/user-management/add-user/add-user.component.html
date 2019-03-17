@@ -1,0 +1,56 @@
+<div class="middle-header">
+  <span class="fontRegular">{{actionName}} User</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/IAM">Home</a> /
+    <a routerLink="../ManageUser">Manage User</a> /
+    <span class="bdActive">{{actionName}} User</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="row">
+    <div class="tableWrapper stepwhiteWrapper stepWrapper">
+      <div class="breadcrumbSec">
+        <div class="stepAll stepMostLeft">
+          <div class="starIconDiv breadcrumbActive"></div>
+          <div class="clear"></div>
+          <span class="breadcrumbText">User Email</span>
+        </div>
+        <div class="stepAll stepCenter">
+          <div class="starIconDiv"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText"> Attach Permission</div>
+        </div>
+        <div class="stepAll stepRight">
+          <div class="starIconDiv"></div>
+          <div class="clear"></div>
+          <div class="breadcrumbText">Preview User Detail </div>
+        </div>
+      </div>
+    </div>
+    <div class="formSection">
+      <h1 class="headerTwo formHeader">Add User Email</h1>
+      <form class="Addform">
+        <div [hidden]="isValid" class="redMsgCenter">Please enter User Email and Message</div>
+        <mat-form-field class="example-full-width loginPassMatClass iAMMatClass">
+          <input type="email" placeholder="User Email" aria-label="User Email" [(ngModel)]="userEmail" matInput [formControl]="emailFormControl"
+            [matAutocomplete]="auto" />
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.userEmail}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <div class="clear"></div>
+        <mat-form-field class="example-full-width loginPassMatClass iAMMatClass iAMtextAreaClass">
+          <textarea matInput type="text" placeholder="Message" [(ngModel)]="userMsg" [ngModelOptions]="{standalone: true}"></textarea>
+        </mat-form-field>
+
+        <div class="matListMain iAMAddFormBtnDv">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" routerLink="../ManageUser">Cancel</button>
+          <button (click)="checkUserND()" mat-flat-button class="cancelUpdateButton activeBtn">{{button}}</button>
+        </div>
+        <div class="clear"></div>
+      </form>
+    </div>
+  </div>
+</div>

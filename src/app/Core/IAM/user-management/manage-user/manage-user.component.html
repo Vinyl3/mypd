@@ -1,0 +1,80 @@
+<div class="middle-header">
+  <span class="fontRegular">Manage User</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/IAM">Home</a> /
+    <span class="bdActive">Manage User</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="row">
+    <h2 class="headerTwo">Users</h2>
+    <div class="tableWrapper userTableWrapper">
+      <div class="actionBtnSec">
+        <button mat-raised-button class="commonBtnClass aAddBtn active" routerLink="/IAM/AddUser">
+          <i class="tiny material-icons">add</i>
+          <span>Add User</span>
+        </button>
+
+        <button mat-raised-button class="commonBtnClass aDeleteBtn" [disabled]="!deleteButton()" [class.active]="deleteButton()"
+          (click)="deleteUserPopup()">
+          <i class="tiny material-icons">delete</i>
+          <span>Delete User</span>
+        </button>
+
+        <div class="buttonDropDownMain">
+          <button mat-raised-button [disabled]="!editButton()" [class.active]="editButton()" class="commonBtnClass aAddBtn aEditBtn" (click)="options('toggle')" (blur)="options('hide')"><i class="tiny material-icons">edit</i> <span>More Actions</span><i class="tiny material-icons">arrow_drop_down</i></button>
+          <ul class="buttonDropDown" [class.showDropMenu]="showDropMenu">
+            <li (click)="modifyUserPermission('Group')"> Add/Remove Groups </li>
+            <li (click)="modifyUserPermission('Role')">Add/Remove Roles </li>
+            <li (click)="modifyUserPermission('Policy')">Add/Remove Policies </li>
+          </ul>
+      </div>
+      </div>      
+      <div class="greenMsgWithRibbon" [hidden]="CommonUtilService.greenMsgRibbonIsHidden">{{CommonUtilService.successMsgGreen}} <i class="material-icons msgIAMClose" (click)="CommonUtilService.greenMsgRibbonIsHidden = true">close</i></div>
+      <div class="clear">&nbsp;</div>
+      <div class="table-wrapper iamcommonTableclass usertable">
+          <div class="tableWrapperMain">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8 checkBoxTable">
+          <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>
+              &nbsp;
+            </mat-header-cell>
+            <mat-cell *matCellDef="let user">
+              <mat-checkbox (change)="onChange($event, user)">
+              </mat-checkbox>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="firstName">
+            <mat-header-cell *matHeaderCellDef> User Name </mat-header-cell>
+            <mat-cell *matCellDef="let user"> <a (click)="UserDetail(user)">{{user.firstName}} {{user.lastName}}</a></mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="userEmail">
+            <mat-header-cell *matHeaderCellDef> Email Address </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.userEmail}} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;">
+          </mat-row>
+        </mat-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="welcomePopSection">
+  <div [hidden]="isPopupHidden" id="popup1" class="overlay deleteOverlay">
+    <div class="popup wow Ownpulse deletePopup" data-wow-delay="2s" data-wow-duration="2s" style="animation-duration: 2s; animation-name: Ownpulse;">
+      <a id="closebtn" class="material-icons msgClose" (click)="deleteUserPopup()">close</a>
+      <div class="content">
+        <p class="popupSuccessMsg">Are you sure you want to delete the User/Users?</p>
+
+        <i class="material-icons deleteCrossIco">priority_high</i>
+        <div class="matListMain popUpBtnDv">
+          <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="deleteUserPopup()">Cancel</button>
+          <button mat-flat-button class="cancelUpdateButton activeBtn" (click)="deleteUser()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

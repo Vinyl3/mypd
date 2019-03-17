@@ -1,0 +1,77 @@
+<div class="middle-header">
+  <span class="fontRegular">Policy Detail</span>
+  <span class="dashBDcrumbs">
+    <a routerLink="/IAM">Home</a> /
+    <a routerLink="/IAM/ManagePolicy">Manage Policy</a> /
+    <span class="bdActive">Policy Detail</span>
+  </span>
+</div>
+<div class="right_panel_content">
+  <div class="tableWrapper plolicyTableWrapper previewWrapper">
+   
+  
+      <div class="previewDv">
+        <div class="userNameEmailWrapper">
+      
+        <div class="previewuserName">
+          <div class="previewLeft">Name</div>
+          <div class=" previewRight">{{policy.name}} </div>
+         
+        </div>
+       
+        <div class="previewuserEmail">
+          <div class="previewLeft">Description</div>
+          <div class="previewRight">{{policy.description}}</div>
+        </div>
+        <button class=" editNameAndemail" mat-raised-button (click)="modifyPolicyND()">Edit</button> 
+        <div class="clear"></div>
+      </div>
+        
+        <div class="policyDltsAndPreviewTab">
+          <tabset>
+            <tab>
+              <span *tabHeading class="tabClass" (click)="permissionType('role')">
+                Attached Permissions
+              </span>
+
+
+              <div class="policyDltsTbMain">
+                <div class="previewTbscroll">
+                   
+                    <div class="tableWrapperMain">
+                  <mat-table [dataSource]="dataSource" class="previewTable">
+                    <ng-container matColumnDef="ctype">
+                      <mat-header-cell *matHeaderCellDef> Component </mat-header-cell>
+                      <mat-cell *matCellDef="let policy"> {{policy.ctype}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="cnames">
+                      <mat-header-cell *matHeaderCellDef>Component Name </mat-header-cell>
+                      <mat-cell *matCellDef="let policy">{{ policy.cnames}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                      <mat-header-cell *matHeaderCellDef>Actions </mat-header-cell>
+                      <mat-cell *matCellDef="let policy">{{ policy.actions}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns">  <button class="previewAddBtn previewEditBtn" mat-raised-button (click)="modifyPolicyComponents()">Edit</button> </mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                  </mat-table>
+                  </div>
+                </div>
+              </div>
+            </tab>
+
+          </tabset>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    
+   
+    <div class="matListMain iAMAddFormBtnDv previewBtnDv">
+        <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="backClicked()">Back</button>
+      </div>
+  </div>
+</div>

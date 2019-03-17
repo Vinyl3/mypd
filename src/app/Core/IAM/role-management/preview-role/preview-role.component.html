@@ -1,0 +1,95 @@
+<div class="middle-header">
+    <span class="fontRegular">Add Role</span>
+    <span class="dashBDcrumbs"><a routerLink="/IAM">Home</a> / <a routerLink="/IAM/ManageRole">Manage Role</a> / <span
+            class="bdActive">Add Role</span>
+    </span>
+</div>
+<div class="right_panel_content">
+
+    <h1 class="headerTwo formHeader formHeaderLeft previewHeading">Preview Role</h1>
+    <div class="tableWrapper stepWrapper previewBreadcrumb">
+        <div class="breadcrumbSec">
+            <div class="stepAll stepMostLeft">
+                <div class="starIconDiv breadcrumbActive"></div>
+                <div class="clear"></div>
+                <span class="breadcrumbText">Role Name</span>
+            </div>
+            <div class="stepAll stepCenter">
+                <div class="starIconDiv breadcrumbActive"></div>
+                <div class="clear"></div>
+                <div class="breadcrumbText"> Attach Policies</div>
+            </div>
+            <div class="stepAll stepRight">
+                <div class="starIconDiv breadcrumbActive"></div>
+                <div class="clear"></div>
+                <div class="breadcrumbText">Preview Role </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="clear"></div>
+
+    <div class="tableWrapper plolicyTableWrapper previewWrapper">
+       
+            <div class="previewDv">
+                <div class="userNameEmailWrapper uerDltsNotEdit">
+                    <div class="previewuserName">
+                        <div class="previewLeft">Role Name</div>
+                        <div class="previewRight">{{role.roleName}}</div>
+                    </div>
+                   
+                    <div class="clear"></div>
+                    <div class="previewuserEmail">
+                        <div class="previewLeft">Role Description</div>
+                        <div class="previewRight">{{role.desc}}</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+
+                <div class="previewRoleAndDltsTab previewTBCommon">
+                    <tabset>
+                        <tab>
+                            <span *tabHeading class="tabClass" (click)="permissionType('group')">
+                                Attached Policies
+                            </span>
+                            <div class="previewRoleSec">
+                                <div class="previewTbscroll">
+                                    <div class="tableWrapperMain">
+                                    <table mat-table [dataSource]="dataSource" class="previewTable">
+                                        <!-- Name Column -->
+                                        <ng-container matColumnDef="name">
+                                            <mat-header-cell *matHeaderCellDef> Policy Name </mat-header-cell>
+                                            <mat-cell *matCellDef="let policy"> {{policy.name}} </mat-cell>
+                                        </ng-container>
+
+                                        <!-- Weight Column -->
+                                        <ng-container matColumnDef="action">
+                                            <mat-header-cell *matHeaderCellDef> Policy Description </mat-header-cell>
+                                            <mat-cell *matCellDef="let policy"> {{policy.description}} </mat-cell>
+                                        </ng-container>
+
+
+                                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                        <mat-row *matRowDef="let policy; columns: displayedColumns;"></mat-row>
+                                    </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </tab>
+                    </tabset>
+
+
+                    <div class="clear"></div>
+
+                    <div class="matListMain iAMAddFormBtnDv previewBtnDv">
+                        <button mat-flat-button class="cancelUpdateButton inactiveBtn" (click)="backClicked()">Back</button>
+                        <button mat-flat-button class="cancelUpdateButton inactiveBtn">Cancel</button>
+                        <button (click)="createRole()" mat-flat-button class="cancelUpdateButton activeBtn">Create Role</button>
+                    </div>
+                 
+                </div>
+            </div>
+   

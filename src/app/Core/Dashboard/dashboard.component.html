@@ -1,0 +1,165 @@
+
+      <div class="page_content">
+          <div class="middle-header">
+              <span class="fontRegular">Dashboard</span>
+              <span class="dashBDcrumbs"><a routerLink="/">ProjectDesk</a> / <span class="bdActive">Dashboard</span> </span>
+            </div>
+            <div class="right_panel_content">
+          <div class="row upper_part">
+            <div class="role">
+              <div class="userRoleMain">
+                <div class="role_upper_part text-center">
+                  <p class="role_name">{{userName}}</p>
+                  <img alt="" class="" src="assets/Images/role_profile.png"/>
+                </div>
+                <div class="role_down_part text-center">
+                  <!-- <p class="role_tag fontLight">Role</p> -->
+                  <p class="role_tag fontLight"></p>
+                  <span class="profhead">Email</span>
+                    <span class="mailText"><a href="mailto">{{userEmail}}</a></span>
+                  <!-- <div class="emialandPhoneSec">
+                    <span class="profhead">Email</span>
+                    <span><a href="mailto">{{userEmail}}</a></span>
+                   
+                  </div> -->
+                  <!-- <div class="col m6 notePadding">
+                    <p class="notification_number">
+                      <span class="profNumbers">
+                        1
+                      </span><br />
+                      Notification
+                    </p>
+                  </div> -->
+                  <!-- <div class="col m6 notePadding">
+                    <p class="notification_work">
+                      <span class="profNumbers">
+                        0
+                      </span><br />
+                      New Work
+                    </p>
+                  </div> -->
+                </div>
+              </div>
+              <div class="clearFixed"></div>
+              <!-- <div class="emialandPhoneSec">
+                <span class="profhead">Email</span>
+                <span><a href="mailto">{{userEmail}}</a></span>
+                <hr>
+                <span class="profhead">Phone</span>
+                <span>+ 123456789</span>
+              </div> -->
+            </div>
+            
+            <div class="adminServiceSec">
+              <a routerLink="/companyRegisteration1" class="rgisterSerCommon">
+                <span class="regiCoIconCommon regiCoIcon"></span>
+                <div class="regisHeading">REGISTER<span>YOUR COMPANY</span></div>
+                <!-- <div class="regisHeading" *ngIf="!CommonUtilService.isRegisterBtnHidden">REGISTER<span>YOUR COMPANY</span></div> -->
+                <!-- <div class="regisHeading" *ngIf="CommonUtilService.isRegisterBtnHidden">COMPANY<span>REGISTERED</span></div> -->
+              </a>
+              <a routerLink="" (click)="createProject()" class="rgisterSerCommon">
+                <span class="regiCoIconCommon createCoIcon"></span>
+                <div class="regisHeading">Create <span>Project  </span>
+                </div>
+              </a>
+              <a routerLink="../project/ManageProject" class="rgisterSerCommon">
+                <span class="activeIcon activeTaskIconCom activeCoIcon">{{projectArray.length}}</span>
+                <div class="regisHeading">Active <span>Projects </span>
+                </div>
+              </a>
+              <span class="rgisterSerCommon">
+                <span class="activeIcon activeTaskIconCom activeTaskIcon">{{taskArray.length}}</span>
+                <div class="regisHeading">Active <span>Tasks</span>
+                </div>
+              </span>
+              <span class="rgisterSerCommon">
+                <span class="activeIcon activeTaskIconCom activeUpdatesIcon">0</span>
+                <div class="regisHeading">Active <span>Updates</span>
+                </div>
+              </span>
+              <span routerLink="" class="rgisterSerCommon">
+                <span class="regiCoIconCommon chooseCoIcon"></span>
+                <div class="regisHeading">Choose <span> Membership Plan </span>
+                </div>
+              </span>
+              <div class="clearFixed"></div>
+              <div class="activeProjectsWrapper">
+                <div class="activeProjectsHeading"><span>Active Projects</span> Projects
+                </div>
+<div class="clear"></div>
+                <mat-table [dataSource]="tableProjectArray" class="table dashboardTable">
+                  <ng-container matColumnDef="srNo">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let project; let i = index;"> 
+                      {{i+1}}
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let project">
+                      <a (click)="projectDetail(project)">{{project.name}} </a>
+                    </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="progress">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let project">
+                        <!-- <span class="progressCommon progressRed">40%</span>&nbsp;<mat-progress-bar mode="determinate" value="40" class="progressRed">&nbsp;</mat-progress-bar> -->
+                    </mat-cell>
+                  </ng-container>
+                  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                  <mat-row *matRowDef="let project; columns: displayedColumns;">
+                  </mat-row>
+                </mat-table>
+                <div class="moreclass"><a routerLink="../project/ManageProject"> more..</a></div>
+        </div>
+        <div class="activeProjectsWrapper">
+          <div class="activeProjectsHeading"><span>Active Tasks</span> Tasks</div>
+          <div class="clear"></div>
+          <mat-table [dataSource]="tableTaskArray" class="table dashboardTable">
+              <ng-container matColumnDef="srNo">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let project; let j = index;"> 
+                  {{j+1}}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let project">
+                  {{project.name}}
+                </mat-cell>
+              </ng-container>
+    
+              <!-- <ng-container matColumnDef="progress">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let project">
+                <span class="progressCommon progressGreen">30%</span>&nbsp;<mat-progress-bar mode="determinate" value="30" class="progressGreen"></mat-progress-bar>
+                </mat-cell>
+              </ng-container> -->
+    
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let project; columns: displayedColumns;">
+              </mat-row>
+            </mat-table>
+
+
+
+          <!-- <span class="progressCommon progressRed">40%</span>
+               <mat-progress-bar mode="determinate" value="40" class="progressRed"></mat-progress-bar>
+                <span class="progressCommon progressGreen">30%</span>
+                <mat-progress-bar mode="determinate" value="30" class="progressGreen"></mat-progress-bar>
+                <span class="progressCommon progressSeenGreen">80%</span>
+                <mat-progress-bar mode="determinate" value="80" class="progressSeenGreen"></mat-progress-bar>                    
+                <span class="progressCommon progressYellow">60%</span>
+                <mat-progress-bar mode="determinate" value="60" class="progressYellow"></mat-progress-bar>
+                <span class="progressCommon progressViolet">50%</span>
+                <mat-progress-bar mode="determinate" value="50" class="progressViolet"></mat-progress-bar>-->
+            <div class="clearFixed"></div>
+            <div class="moreclass"><a routerLink=""> more..</a></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    
+      <!-- <router-outlet></router-outlet> -->
+    </div>
+    
