@@ -17,7 +17,7 @@ import { DashboardComponent } from './Dashboard/dashboard.component';
   ],
   declarations: [
     CorelayoutComponent,
-    DashboardComponent,
+    DashboardComponent
   ]
 })
 export class CoreLayoutModule { }
