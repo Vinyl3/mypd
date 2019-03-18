@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
-import { BasicRoutingModule, routingComponents } from './basiclayout-routing.module';
+import { BasicRoutingModule} from './basiclayout-routing.module';
+import { CommonModule } from '@angular/common';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
-    BasicRoutingModule,
+    CommonModule,BasicRoutingModule
   ],
-  declarations:[routingComponents],
-  providers:[   
-  ]
+  declarations:[AboutusComponent,HomeComponent],
+  providers:[]
 })
 export class BasiclayoutModule { }
