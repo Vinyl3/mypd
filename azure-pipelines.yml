@@ -10,12 +10,8 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '8.x'
-  displayName: 'Install Node.js'
 
 - script: |
     npm install
-    nohup ng serve --host 0.0.0.0 &
+    ng build
   displayName: 'npm install and build'
