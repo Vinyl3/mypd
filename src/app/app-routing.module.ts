@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: '**', component: PagenotfoundComponent },
 ];
 
-@NgModule({  
+@NgModule({
   imports: [RouterModule.forRoot(routes,)],
   exports: [RouterModule]
 })
