@@ -18,6 +18,9 @@ steps:
 - script: |
     npm install -g @angular/cli 6.2.x
     npm install
-    pid = ps -ef | grep -w "ng"| grep -v "grep" | awk '{print $2}'
-    echo pid
   displayName: 'npm install and build'
+  
+  - bash: |
+       pid = ps -ef | grep -w "ng"| grep -v "grep" | awk '{print $2}'
+       echo pid
+  displayName: 'Bash Script'
