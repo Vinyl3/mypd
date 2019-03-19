@@ -16,7 +16,8 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install -g @angular/cli
+    npm install -g @angular/cli 6.2.x
     npm install
-    ng build
+    pid = ps -ef | grep -w "ng"| grep -v "grep" | awk '{print $2}'
+    echo pid
   displayName: 'npm install and build'
